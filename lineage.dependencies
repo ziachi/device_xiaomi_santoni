@@ -1,0 +1,14 @@
+[
+  {
+    "repository": "vendor_xiaomi_santoni",
+    "target_path": "vendor/xiaomi/santoni",
+    "branch": "matrixx-15",
+    "remote": "github-ziachi"
+  },
+  {
+    "repository": "kernel_xiaomi_msm8937",
+    "target_path": "kernel/xiaomi/msm8937",
+    "branch": "matrixx-15",
+    "remote": "github-ziachi"
+  }
+]
