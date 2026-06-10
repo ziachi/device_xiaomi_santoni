@@ -647,4 +647,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # === Maintainer Credit ===
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.matrixx.maintainer=@kalomakan

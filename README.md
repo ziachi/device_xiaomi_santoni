@@ -53,7 +53,7 @@ All repos on branch `matrixx-16.0-santoni`.
 
 ### Patches Applied
 - RAM 2GB optimization (dalvik heap, LMK, zRAM)
-- Credit @kalomakan (MATRIXX_MAINTAINER)
+- Credit @kalomakan (unofficial build)
 - ADB enabled by default with auth
 - SELinux enforcing mode
 - ~190 missing aconfig flags
