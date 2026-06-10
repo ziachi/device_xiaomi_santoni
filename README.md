@@ -1,23 +1,24 @@
-# Device Tree for Xiaomi Redmi 4X (santoni)
+# device_xiaomi_santoni
 
-## Spec Sheet
+Matrixx 13 (Android 16) build fixes for Xiaomi Redmi 4X (santoni).
 
-| Feature                 | Specification                     |
-| :---------------------- | :-------------------------------- |
-| CPU                     | Octa-core 1.4 GHz Cortex-A53      |
-| Chipset                 | Qualcomm MSM8940 Snapdragon 435   |
-| GPU                     | Adreno 505                        |
-| Memory                  | 2/3 GB                            |
-| Shipped Android Version | 6.0.1                             |
-| Storage                 | 16/32 GB                          |
-| MicroSD                 | Up to 256 GB                      |
-| Battery                 | 4100 mAh (non-removable)          |
-| Dimensions              | 139 x 69 x 8.65 mm                |
-| Display                 | 720 x 1280 pixels, 5" (~294 PPI)   |
-| Rear Camera             | 13 MP, LED flash                  |
-| Front Camera            | 5 MP                              |
-| Release Date            | May 2017                          |
+> **⚠️ This build is still broken** — stopped at ~3% ninja compilation.
 
-## Device Picture
+## Source / Credits
 
-![Redmi 4X](https://cdn.tgdd.vn/Products/Images/42/99145/xiaomi-redmi-4x-400-400x460.png "Redmi 4X")
+- **Original source:** androidsantoni
+- **Forked/cloned from:** https://github.com/androidsantoni/device_xiaomi_santoni (branch: derp-16-dev)
+- **ROM:** [ProjectMatrixx](https://github.com/ProjectMatrixx) (Matrixx 13, Android 16)
+- **Device tree:** [androidsantoni/device_xiaomi_santoni](https://github.com/androidsantoni/device_xiaomi_santoni) (derp-16-dev)
+- **Kernel:** [androidsantoni/kernel_xiaomi_msm8937](https://github.com/androidsantoni/kernel_xiaomi_msm8937)
+- **Maintainer:** @ziachi
+
+## Changes
+
+Build fixes and patches for Santoni compatibility on the `matrixx-16.0-santoni` branch.
+See commit history for details.
+
+## License
+
+Apache License 2.0 — see [LICENSE](LICENSE)
+
