@@ -686,14 +686,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # =========================================
 # microG GmsCore + Vending (#27)
 # =========================================
-PRODUCT_PACKAGES += \
-    GmsCore \
-    GmcVending
+# Install microG as privileged system apps
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/microg/GmsCore.apk:$(TARGET_COPY_OUT_SYSTEM)/priv-app/GmsCore/GmsCore.apk \
+    $(LOCAL_PATH)/prebuilt/microg/GmcVending.apk:$(TARGET_COPY_OUT_SYSTEM)/priv-app/GmcVending/GmcVending.apk
 
 # microG privileged permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-microg.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-microg.xml
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-microg.xml
 
 # Default permissions for microG (auto-grant on first boot)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-microg.xml
+    $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-microg.xml
