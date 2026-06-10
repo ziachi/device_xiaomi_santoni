@@ -3,6 +3,23 @@
 Unofficial ProjectMatrixx v11.9.0 build for santoni.  
 Optimized for 2GB RAM, vanilla (no GApps), SELinux enforcing.
 
+## Credits & Upstream Sources
+
+This project is based on work by the following open-source projects and maintainers:
+
+| Component | Original Source | Branch | License |
+|-----------|----------------|--------|---------|
+| Device tree | [androidsantoni/device_xiaomi_santoni](https://github.com/androidsantoni/device_xiaomi_santoni) | `evolutionx-15-dev` | Apache 2.0 |
+| Vendor blobs | [androidsantoni/vendor_xiaomi_santoni](https://github.com/androidsantoni/vendor_xiaomi_santoni) | `12.0` | Proprietary |
+| Kernel | [androidsantoni/kernel_xiaomi_msm8937](https://github.com/androidsantoni/kernel_xiaomi_msm8937) | `13` | GPL v2 |
+| Kernel upstream | [LineageOS/android_kernel_xiaomi_msm8937](https://github.com/LineageOS/android_kernel_xiaomi_msm8937) | `lineage-22.2` | GPL v2 |
+| ROM base | [ProjectMatrixx (AnierinBliss)](https://github.com/AnierinBliss/matrixx_android) | `15.0` | Apache 2.0 |
+| frameworks/base | [ProjectMatrixx/frameworks_base](https://github.com/ProjectMatrixx/frameworks_base) | `15.0` | Apache 2.0 |
+| Original device tree | [LineageOS/android_device_xiaomi_santoni](https://github.com/LineageOS/android_device_xiaomi_santoni) | `lineage-16.0` | Apache 2.0 |
+
+**Copyright:** Device tree files carry `Copyright (C) 2017-2021 The LineageOS Project`.  
+**Thank you** to the LineageOS team, androidsantoni, and ProjectMatrixx for making this possible.
+
 ## Repositories
 
 | Repo | GitHub | Branch | Path |
