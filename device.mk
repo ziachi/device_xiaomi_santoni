@@ -685,7 +685,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # =========================================
 # microG GmsCore + Vending (#27)
+# Default: vanilla (no microG)
+# Build with microG: WITH_MICROG=true mka bacon
 # =========================================
+WITH_MICROG ?= false
+
+ifeq ($(WITH_MICROG),true)
 PRODUCT_PACKAGES += \
     GmsCore \
     GmcVending
@@ -697,3 +702,4 @@ PRODUCT_COPY_FILES += \
 # Default permissions for microG (auto-grant on first boot)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-microg.xml
+endif
