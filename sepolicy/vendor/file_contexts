@@ -1,0 +1,68 @@
+# Block devices
+/dev/block/mmcblk0p26		u:object_r:persist_block_device:s0
+
+# Block IO
+/dev/blkio(/.*)?                                u:object_r:blkio:s0
+
+# Camera
+/data/vendor/qcam(/.*)?                         u:object_r:camera_socket:s0
+
+# Dolby
+/(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service                     u:object_r:hal_dms_default_exec:s0
+
+# FPC Fingerprint
+/data/fpc(/.*)?                                          u:object_r:fpc_data_file:s0
+/dev/socket/fpce                                         u:object_r:fpc_socket:s0
+/sys/devices(/platform)?/soc/soc:fpc1020(/.*)?           u:object_r:sysfs_fps_attr:s0
+
+# Goodix Fingerprint
+/(vendor|system/vendor)/bin/gx_fpd          u:object_r:gx_fpd_exec:s0
+/dev/gf66xx-spi                             u:object_r:gx_fpd_device:s0
+/dev/goodix_fp                              u:object_r:gx_fpd_device:s0
+/data/goodix(/.*)?                          u:object_r:gx_fpd_data_file:s0
+/data/system/fingerprint(/.*)?              u:object_r:gx_fpd_data_file:s0
+
+# HALs
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.2-service.custom                 u:object_r:hal_fingerprint_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.lights-service\.santoni     u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.perf@2\.1-service       u:object_r:hal_perf_default_exec:s0
+
+# I/O
+# This node is already labelled by QCOM but Lineage overrides it with sysfs_io_sched_tunable label
+# Since qti_init_shell needs to write to it, LOS's private label isn't accessible by our vendor
+# Relabel it to QCOM's sysfs_mmc_host label to get rid of denials
+/sys/devices(/platform)?/soc/[a-f0-9]+.sdhci/mmc_host/mmc[0-9]/mmc[0-9]:[a-f0-9]+/block/mmcblk[0-9]/queue/read_ahead_kb u:object_r:sysfs_mmc_host:s0
+
+# Input files
+/sys/board_properties/virtualkeys.ft5x06_720p   u:object_r:keylayout_file_sysfs:s0
+
+# FPS Info
+/sys/devices/virtual/graphics/fb0/measured_fps                              u:object_r:sysfs_fps:s0
+
+# Legacy root dirs
+/firmware(/.*)?            u:object_r:firmware_file:s0
+/bt_firmware(/.*)?              u:object_r:bt_firmware_file:s0
+/persist(/.*)?            u:object_r:mnt_vendor_file:s0
+
+# Lights / IR Blaster
+/sys/devices(/platform)?/soc/[a-z0-9]+\.sdhci/leds(/.*)?                                u:object_r:sysfs_leds:s0
+/sys/devices(/platform)?/soc/[a-z0-9]+\.i2c/i2c-[0-9]+/[0-9]+-[a-z0-9]+/leds(/.*)?      u:object_r:sysfs_leds:s0
+/sys/devices(/platform)?/soc/leds-qpnp-[0-9]+/leds(/.*)?                                u:object_r:sysfs_leds:s0
+/sys/devices(/platform)?/soc/soc:gpio-leds/leds(/.*)?                                   u:object_r:sysfs_leds:s0
+
+# Rild
+/(vendor|system/vendor)/radio/qcril_database/qcril.db			u:object_r:rild_file:s0
+
+# Sensors
+/(mnt/vendor)/persist/sensors(/.*)?                                     u:object_r:persist_sensors_file:s0
+
+# Sys files
+/sys/devices/soc/78b6000\.i2c/i2c-2/2-[0-9a-f]+/leds(/.*)?		u:object_r:sysfs_leds:s0
+/sys/devices/soc/78b7000\.i2c/i2c-3/3-[0-9a-f]+/disable_keys            u:object_r:proc_touchpanel:s0
+
+# Shell Script
+/(vendor|system/vendor)/bin/init\.baseband\.sh          u:object_r:init_baseband_exec:s0
+/(vendor|system/vendor)/bin/init\.goodix\.sh		u:object_r:init_fingerprint_exec:s0
+
+# DT2W
+/sys/android_touch/doubletap2wake                                     u:object_r:sysfs_dt2w:s0
