@@ -257,3 +257,4 @@ persist.log.tag.ANDR-PERF=S
 persist.log.tag.android.hardware.power-service-qti=S
 persist.log.tag.vendor.qti.hardware.perf=S
 persist.log.tag.perf-hal=S
+persist.log.tag.WifiHAL=S
