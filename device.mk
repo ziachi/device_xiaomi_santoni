@@ -686,10 +686,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # =========================================
 # microG GmsCore + Vending (#27)
 # =========================================
-# Install microG as privileged system apps
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/microg/GmsCore.apk:$(TARGET_COPY_OUT_SYSTEM)/priv-app/GmsCore/GmsCore.apk \
-    $(LOCAL_PATH)/prebuilt/microg/GmcVending.apk:$(TARGET_COPY_OUT_SYSTEM)/priv-app/GmcVending/GmcVending.apk
+PRODUCT_PACKAGES += \
+    GmsCore \
+    GmcVending
 
 # microG privileged permissions
 PRODUCT_COPY_FILES += \

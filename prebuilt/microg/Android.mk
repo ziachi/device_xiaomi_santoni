@@ -1,0 +1,25 @@
+LOCAL_PATH := $(call my-dir)
+
+# microG GmsCore
+include $(CLEAR_VARS)
+LOCAL_MODULE := GmsCore
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_SRC_FILES := GmsCore.apk
+LOCAL_OVERRIDES_PACKAGES := com.google.android.gms
+LOCAL_DEX_PREOPT := false
+include $(BUILD_PREBUILT)
+
+# microG Vending (Play Store replacement)
+include $(CLEAR_VARS)
+LOCAL_MODULE := GmcVending
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_SRC_FILES := GmcVending.apk
+LOCAL_OVERRIDES_PACKAGES := com.android.vending
+LOCAL_DEX_PREOPT := false
+include $(BUILD_PREBUILT)
