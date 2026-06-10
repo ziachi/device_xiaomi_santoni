@@ -682,3 +682,18 @@ PRODUCT_COPY_FILES += \
 # ========================
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/bootdevice/by-name/config
+
+# =========================================
+# microG GmsCore + Vending (#27)
+# =========================================
+PRODUCT_PACKAGES += \
+    GmsCore \
+    GmcVending
+
+# microG privileged permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-microg.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-microg.xml
+
+# Default permissions for microG (auto-grant on first boot)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-microg.xml
