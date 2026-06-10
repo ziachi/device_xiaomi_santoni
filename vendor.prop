@@ -239,3 +239,11 @@ vendor.perf.phs.enable=false
 
 # Disable PowerHAL boost hints (suppress Failed to acquire lock)
 vendor.power.disable.hint=true
+
+# v4 Fix #19: Play Integrity — spoof locked bootloader for DroidGuard
+ro.boot.vbmeta.device_state=locked
+ro.boot.verifiedbootstate=green
+ro.boot.flash.locked=1
+ro.boot.veritymode=enforcing
+ro.boot.warranty_bit=0
+ro.warranty_bit=0

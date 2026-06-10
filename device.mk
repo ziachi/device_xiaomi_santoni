@@ -670,3 +670,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.santoni_perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.santoni_perf.rc \
     $(LOCAL_PATH)/rootdir/init.spectrum.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.spectrum.rc \
     $(LOCAL_PATH)/rootdir/init.disable_services.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.disable_services.rc
+
+# ========================
+# Play Integrity Fix (PIF) configuration
+# ========================
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/pif/pif.json:$(TARGET_COPY_OUT_PRODUCT)/etc/pif.json
