@@ -1,0 +1,31 @@
+typeattribute vendor_init data_between_core_and_vendor_violators;
+
+allow vendor_init rootfs:lnk_file setattr;
+allow vendor_init fpc_data_file:dir create_file_perms;
+allow vendor_init proc_dirty_ratio:file { write };
+allow vendor_init proc_dirty:file { write };
+allow vendor_init proc_swap:file { open write };
+allow vendor_init self:capability kill;
+get_prop(vendor_init, vendor_tee_listener_prop)
+get_prop(vendor_init, vendor_fingerprint_prop)
+get_prop(vendor_init, default_prop)
+set_prop(vendor_init, vendor_camera_prop)
+set_prop(vendor_init, vendor_fm_prop)
+set_prop(vendor_init, vendor_fingerprint_prop)
+get_prop(vendor_init, vendor_imsradio_prop)
+
+allow vendor_init {
+  bluetooth_data_file
+  cache_file
+  camera_data_file
+  dhcp_data_file
+  media_rw_data_file
+  system_data_file
+  tombstone_data_file
+  wifi_data_file
+  wpa_socket
+  rootfs
+}:dir { create search getattr open read setattr ioctl write add_name remove_name rmdir relabelfrom };
+
+# Allow vendor_init to write to /dev/blkio
+allow vendor_init blkio:file w_file_perms;
