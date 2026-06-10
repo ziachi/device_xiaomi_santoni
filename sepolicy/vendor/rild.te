@@ -1,0 +1,2 @@
+allow rild diag_device:chr_file { ioctl open read write };
+binder_call(rild, qtidataservices_app)
