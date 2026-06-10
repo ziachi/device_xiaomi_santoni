@@ -214,3 +214,14 @@ persist.device_config.gms_games.enabled=false
 # Limit GCM wakeups
 ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
+
+# v5 Fix #25: GMS memory & background limiter for 2GB RAM
+# Limit max cached processes system-wide
+persist.device_config.activity_manager.max_cached_processes=16
+# Defer dex2oat to idle/charging state to reduce first boot lag
+pm.dexopt.install=speed-profile
+pm.dexopt.bg-dexopt=speed-profile
+pm.dexopt.boot-after-ota=verify
+pm.dexopt.first-boot=verify
+# Limit GMS background service restarts
+persist.device_config.activity_manager.max_phantom_processes=6
