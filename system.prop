@@ -195,3 +195,22 @@ persist.device_config.configuration.disable_server_configurable_flags_reset=true
 # Spectrum Kernel Manager
 persist.spectrum.kernel=1
 persist.spectrum.profile=0
+
+# v4 Fix #14: Disable Settings Intelligence (5K spam lines, CPU waste)
+persist.log.tag.SettingsIntelligence=S
+persist.log.tag.com.google.android.settings.intelligence=S
+
+# v4 Fix #17: Disable Google adservices (saves ~10MB RAM)
+persist.device_config.adservices.enabled=false
+persist.device_config.adservices.measurement_kill_switch=true
+persist.device_config.adservices.topics_kill_switch=true
+persist.device_config.adservices.fledge_kill_switch=true
+
+# v4 Fix #18: Reduce GMS background activity (95 GC/5min in logcat)
+# Limit GMS chimera scheduled tasks
+ro.com.google.gmsversion=15_202501
+# Restrict background GMS wakeups
+persist.device_config.gms_games.enabled=false
+# Limit GCM wakeups
+ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
+ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
