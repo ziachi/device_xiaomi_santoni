@@ -1,6 +1,6 @@
 #
 # Matrixx 16.0 build for Santoni (Redmi 4X)
-# Maintainer: @kalomakan
+# Unofficial build by @kalomakan
 #
 
 # Inherit from those products. Most specific first.
@@ -26,8 +26,6 @@ PRODUCT_NAME := lineage_santoni
 BOARD_VENDOR := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
 
-# Matrixx Stuff
-MATRIXX_MAINTAINER := @kalomakan
 
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 720
