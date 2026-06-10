@@ -676,3 +676,9 @@ PRODUCT_COPY_FILES += \
 # ========================
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/pif/pif.json:$(TARGET_COPY_OUT_PRODUCT)/etc/pif.json
+
+# ========================
+# Fix #20: Enable persistent_data_block (needed for PI + FRP)
+# ========================
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.frp.pst=/dev/block/bootdevice/by-name/config
