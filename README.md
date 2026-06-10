@@ -103,5 +103,6 @@ mka bacon
 
 ## Thanks To
 - [androidsantoni](https://github.com/androidsantoni) — device tree, vendor, and kernel base
+- [omansh-krishn](https://github.com/omansh-krishn) — thanks for keeping the source alive
 - [LineageOS](https://github.com/LineageOS/android_device_xiaomi_santoni) — original santoni device tree & [kernel upstream](https://github.com/LineageOS/android_kernel_xiaomi_msm8937)
 - [ProjectMatrixx / AnierinBliss](https://github.com/AnierinBliss/matrixx_android) — ROM base & [frameworks](https://github.com/ProjectMatrixx/frameworks_base)
