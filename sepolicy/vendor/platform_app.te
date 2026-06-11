@@ -17,5 +17,3 @@ allow platform_app sysfs_battery_supply:file { getattr open read };
 allow platform_app sysfs_kgsl:dir search;
 allow platform_app sysfs_kgsl:file { getattr open read };
 
-# Spectrum QS tile - allow setting kernel profile property
-set_prop(platform_app, vendor_spectrum_prop)
