@@ -557,4 +557,11 @@
     <!-- Fix PhoneStatusBarView: explicitly declare no display cutout -->
     <string name="config_mainBuiltInDisplayCutout" translatable="false"></string>
     <string name="config_mainBuiltInDisplayCutoutRectApproximation" translatable="false"></string>
+
+    <!-- [v10] Disable fast charging toggle (santoni has no fast charge HW) -->
+    <bool name="config_fastCharging_available">false</bool>
+
+    <!-- [v10] Optimize recents for 2GB RAM -->
+    <integer name="config_maxRecentTasksNum">8</integer>
+
 </resources>
