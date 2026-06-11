@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="ziachi" fetch="https://github.com/ziachi/" />
+  
+  <project path="device/xiaomi/santoni" name="device_xiaomi_santoni" remote="ziachi" revision="matrixx-15" />
+  <project path="vendor/xiaomi/santoni" name="vendor_xiaomi_santoni" remote="ziachi" revision="matrixx-15" />
+  <project path="kernel/xiaomi/msm8937" name="kernel_xiaomi_msm8937" remote="ziachi" revision="matrixx-15" />
+
+  <!-- Override frameworks/base with ziachi fork (includes Spectrum QS tile + API fixes) -->
+  <remove-project name="ProjectMatrixx/frameworks_base" />
+  <project path="frameworks/base" name="frameworks_base" remote="ziachi" revision="15.0" />
+</manifest>
