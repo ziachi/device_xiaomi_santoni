@@ -37,6 +37,13 @@
     <!-- Wifi driver supports batched scan -->
     <bool translatable="false" name="config_wifi_batched_scan_supported">false</bool>
 
+    <!-- [v10] Disable linked network configuration (reduces scan overhead) -->
+    <bool translatable="false" name="config_wifi_linked_network_enabled">false</bool>
+
+    <!-- [v10] Reduce WiFi scan interval for GApps (saves battery + reduces HAL errors) -->
+    <integer translatable="false" name="config_wifiPnoScanIntervalMs">300000</integer>
+    <integer translatable="false" name="config_wifiScannerBackgroundScanIntervalMs">300000</integer>
+
     <!-- Enable WPA2 to WPA3 auto-upgrade -->
     <bool translatable="false" name="config_wifiSaeUpgradeEnabled">false</bool>
 
