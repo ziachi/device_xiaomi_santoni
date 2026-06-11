@@ -14,18 +14,18 @@ Available in two variants: **Vanilla** (pure AOSP) and **microG** (with GmsCore 
 
 | Frameworks (fork) | [frameworks_base](https://github.com/ziachi/frameworks_base) | `15.0` | `frameworks/base` |
 
-> **Note:** `frameworks/base` menggunakan fork dari `ziachi/frameworks_base` (bukan upstream `ProjectMatrixx/frameworks_base`).
-> Fork ini berisi patch Spectrum QS tile + API fixes khusus santoni.
-> Kalau mau rebuild tanpa patch custom, ganti di `local_manifests/santoni.xml`:
+> **Note:** `frameworks/base` uses a fork from `ziachi/frameworks_base` (not upstream `ProjectMatrixx/frameworks_base`).
+> This fork contains Spectrum QS tile patches + santoni-specific API fixes.
+> To rebuild without custom patches, edit `local_manifests/santoni.xml`:
 > ```xml
-> <!-- Hapus baris ini: -->
+> <!-- Remove these lines: -->
 > <remove-project name="ProjectMatrixx/frameworks_base" />
 > <project path="frameworks/base" name="frameworks_base" remote="ziachi" revision="15.0" />
 >
-> <!-- Atau ganti ke upstream: -->
+> <!-- Or replace with upstream: -->
 > <!-- <project path="frameworks/base" name="ProjectMatrixx/frameworks_base" remote="github" revision="15.0" /> -->
 > ```
-> Tanpa patch, Spectrum QS tile dan beberapa API stub tidak akan ada.
+> Without these patches, Spectrum QS tile and some API stubs will be missing.
 
 ## Prerequisites
 
