@@ -108,8 +108,14 @@ on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
 on property:sys.boot_completed=1
-    # Fix TaskPersister: create recents directory after CE storage ready
-    mkdir /data/system_ce/0/recent_tasks 0771 system system
+    # [v10] Drop caches after boot to free RAM for apps
+    write /proc/sys/vm/drop_caches 3
+    # [v10] Set swappiness for 2GB RAM + GApps
+    write /proc/sys/vm/swappiness 100
+    write /proc/sys/vm/vfs_cache_pressure 200
+    # [v10] Reduce dirty ratio for smoother I/O
+    write /proc/sys/vm/dirty_ratio 10
+    write /proc/sys/vm/dirty_background_ratio 5
    start qrngp
    restart thermal-engine
 
