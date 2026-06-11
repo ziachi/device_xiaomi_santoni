@@ -135,7 +135,6 @@ vendor.display.disable_scaler=1
 sys.fflag.override.settings_seamless_transfer=true
 
 # Skia
-renderthread.skia.reduceopstasksplitting=true
 
 # SurfaceFlinger
 ro.surface_flinger.protected_contents=true
@@ -170,7 +169,6 @@ persist.timed.enable=true
 ro.hw_timeout_multiplier=3
 
 # WiFi Display
-persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
 
 # Zygote
@@ -182,7 +180,7 @@ zygote.critical_window.minute=10
 # Faster app launch
 persist.device_config.runtime_native.usap_pool_enabled=false
 # Reduce background process limit  
-ro.sys.fw.bg_apps_limit=16
+ro.sys.fw.bg_apps_limit=6
 # Aggressive cached app compaction
 persist.sys.appcompact.enable_app_compact=true
 persist.sys.appcompact.full_compact_type=2
@@ -212,12 +210,10 @@ ro.com.google.gmsversion=15_202501
 # Restrict background GMS wakeups
 persist.device_config.gms_games.enabled=false
 # Limit GCM wakeups
-ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
-ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
 
 # v5 Fix #25: GMS memory & background limiter for 2GB RAM
 # Limit max cached processes system-wide
-persist.device_config.activity_manager.max_cached_processes=16
+persist.device_config.activity_manager.max_cached_processes=8
 # Defer dex2oat to idle/charging state to reduce first boot lag
 pm.dexopt.install=speed-profile
 pm.dexopt.bg-dexopt=speed-profile
@@ -245,11 +241,10 @@ ro.lmk.kill_timeout_ms=100
 ro.lmk.use_minfree_levels=true
 
 # Limit GMS background services (reduce ANR cascade)
-persist.sys.fw.bg_apps_limit=12
+persist.sys.fw.bg_apps_limit=6
 
 # Speed up first boot — skip GMS setup wizard delays
 ro.setupwizard.mode=OPTIONAL
-ro.com.google.gmsversion=15_202501
 
 # Reduce dex2oat threads on first boot (prevent ANR from CPU starvation)
 dalvik.vm.dex2oat-threads=2
@@ -301,3 +296,18 @@ persist.log.tag.DeviceBasedSatelliteRepo=S
 
 # FileSystemUtils fallocate (kernel 4.9 limitation)
 persist.log.tag.FileSystemUtils=S
+
+# ========================
+# [v11] GMS RAM Reduction — Play Integrity + Play Store only
+# ========================
+# Prevent GMS background auto-updates
+persist.device_config.gms.auto_update=false
+# Disable USAP pre-fork pool (saves ~30MB RAM)
+persist.sys.usap_pool_enabled=false
+# Disable Smart Selection / App Prediction (saves ~20MB)
+persist.device_config.activity_manager_native_boot.offload_queue_enabled=false
+ro.launcher.live_wallpaper=0
+# Restrict GMS chimera background scheduling
+persist.device_config.gservices_android.enabled=false
+# Disable ambient display (saves background sensor polling)
+ro.config.always_show_time=false
