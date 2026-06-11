@@ -224,7 +224,80 @@ pm.dexopt.bg-dexopt=speed-profile
 pm.dexopt.boot-after-ota=verify
 pm.dexopt.first-boot=verify
 # Limit GMS background service restarts
-persist.device_config.activity_manager.max_phantom_processes=6
 persist.log.tag.gs.intelligence=S
 persist.log.tag.AccessPersistence=S
 persist.log.tag.BluetoothPowerStatsCollector=S
+
+# ========================
+# [v10] GApps Boot Optimization
+# ========================
+# Dalvik VM heap for 2GB RAM with GApps
+
+# More aggressive LMK for 2GB + GApps
+ro.lmk.low=1001
+ro.lmk.medium=800
+ro.lmk.critical=0
+ro.lmk.critical_upgrade=false
+ro.lmk.upgrade_pressure=100
+ro.lmk.downgrade_pressure=100
+ro.lmk.kill_heaviest_task=true
+ro.lmk.kill_timeout_ms=100
+ro.lmk.use_minfree_levels=true
+
+# Limit GMS background services (reduce ANR cascade)
+persist.sys.fw.bg_apps_limit=12
+
+# Speed up first boot — skip GMS setup wizard delays
+ro.setupwizard.mode=OPTIONAL
+ro.com.google.gmsversion=15_202501
+
+# Reduce dex2oat threads on first boot (prevent ANR from CPU starvation)
+dalvik.vm.dex2oat-threads=2
+dalvik.vm.boot-dex2oat-threads=4
+dalvik.vm.image-dex2oat-threads=4
+
+# ========================
+# [v10] Log Suppression — cosmetic errors
+# ========================
+# QTI PowerHAL vendor blob spam (17804x — no source fix)
+persist.log.tag.QTI PowerHAL=S
+
+# WiFi getCachedScanData (HAL returns NOT_SUPPORTED, working as designed)
+persist.log.tag.WifiStaIfaceAidlImpl=S
+
+# TaskPersister (cosmetic, dir created on first write by system_server)
+persist.log.tag.TaskPersister=S
+
+# FastChargingPreferenceController (no fast charge HW on santoni)
+persist.log.tag.FastChargingPreferenceController=S
+
+# ClockRegistry JSON parse (null settings on first boot)
+persist.log.tag.ClockRegistry (System)=S
+
+# OverviewProxyService dead object (SystemUI reconnect after ANR)
+persist.log.tag.OverviewProxyService=S
+
+# SharedConnectivityManager (GMS service binding)
+persist.log.tag.SharedConnectivityManager=S
+
+# InputDispatcher hover events (wallpaper channel cosmetic)
+persist.log.tag.InputDispatcher=S
+
+# SmsApplication self-healing permissions
+persist.log.tag.SmsApplication=S
+
+# AppOpService migration noise
+persist.log.tag.AppOpService=S
+
+# GMS internal noise
+persist.log.tag.Finsky=S
+persist.log.tag.gogt=S
+persist.log.tag.ChimeraSrvcProxy=S
+persist.log.tag.constellation=S
+persist.log.tag.RestoreGrpcBackupOptInA=S
+
+# DeviceBasedSatelliteRepo (no satellite HW)
+persist.log.tag.DeviceBasedSatelliteRepo=S
+
+# FileSystemUtils fallocate (kernel 4.9 limitation)
+persist.log.tag.FileSystemUtils=S
