@@ -1,3 +1,6 @@
+# microG GmsCore SELinux policy
+# Package: com.google.android.gms (microG implementation)
+
 dontaudit gmscore_app adsprpcd_file:filesystem getattr;
 dontaudit gmscore_app firmware_file:filesystem getattr;
 dontaudit gmscore_app traced_producer_socket:sock_file getattr;
@@ -7,3 +10,12 @@ binder_call(gmscore_app, hal_memtrack_hwservice);
 
 # Baseband (without this, device will freeze)
 get_prop(gmscore_app, baseband_prop)
+
+# Allow microG to read system properties it needs
+get_prop(gmscore_app, vendor_default_prop)
+
+# Allow microG to access location HALs
+binder_call(gmscore_app, hal_gnss_default);
+
+# Network access for microG services
+allow gmscore_app self:udp_socket { create connect };
