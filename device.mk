@@ -721,3 +721,12 @@ PRODUCT_COPY_FILES += \
 # =========================================
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/disable-health-feature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
+
+
+# =========================================
+# Fix #7: Disable APK fs-verity (kernel 4.9 has no fs-verity support)
+# Stops "Failed to verity-protect runtime-permissions" spam (280x in logcat)
+# Android falls back to non-verified mode — no security impact on this kernel
+# =========================================
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.apk_verity.mode=0
