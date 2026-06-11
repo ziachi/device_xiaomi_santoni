@@ -12,8 +12,20 @@ Available in two variants: **Vanilla** (pure AOSP) and **microG** (with GmsCore 
 | Vendor blobs | [vendor_xiaomi_santoni](https://github.com/ziachi/vendor_xiaomi_santoni) | `matrixx-15` | `vendor/xiaomi/santoni` |
 | Kernel | [kernel_xiaomi_msm8937](https://github.com/ziachi/kernel_xiaomi_msm8937) | `matrixx-15` | `kernel/xiaomi/msm8937` |
 
-**Also required:** `frameworks/base` from `ProjectMatrixx/frameworks_base` (branch `15.0`)  
-> Note: Matrixx renamed `android_frameworks_base` → `frameworks_base`, so the default manifest won't find it. The local manifest override handles this.
+| Frameworks (fork) | [frameworks_base](https://github.com/ziachi/frameworks_base) | `15.0` | `frameworks/base` |
+
+> **Note:** `frameworks/base` menggunakan fork dari `ziachi/frameworks_base` (bukan upstream `ProjectMatrixx/frameworks_base`).
+> Fork ini berisi patch Spectrum QS tile + API fixes khusus santoni.
+> Kalau mau rebuild tanpa patch custom, ganti di `local_manifests/santoni.xml`:
+> ```xml
+> <!-- Hapus baris ini: -->
+> <remove-project name="ProjectMatrixx/frameworks_base" />
+> <project path="frameworks/base" name="frameworks_base" remote="ziachi" revision="15.0" />
+>
+> <!-- Atau ganti ke upstream: -->
+> <!-- <project path="frameworks/base" name="ProjectMatrixx/frameworks_base" remote="github" revision="15.0" /> -->
+> ```
+> Tanpa patch, Spectrum QS tile dan beberapa API stub tidak akan ada.
 
 ## Build Instructions
 
@@ -25,10 +37,10 @@ repo init -u https://github.com/AnierinBliss/matrixx_android.git -b 15.0 --git-l
 ### 2. Add local manifest
 ```bash
 mkdir -p .repo/local_manifests
-cp device/xiaomi/santoni/manifests/santoni.xml .repo/local_manifests/
+cp device/xiaomi/santoni/local_manifests/santoni.xml .repo/local_manifests/
 # Or if device tree not yet cloned:
 curl -o .repo/local_manifests/santoni.xml \
-  https://raw.githubusercontent.com/ziachi/device_xiaomi_santoni/matrixx-15/manifests/santoni.xml
+  https://raw.githubusercontent.com/ziachi/device_xiaomi_santoni/matrixx-15/local_manifests/santoni.xml
 ```
 
 ### 3. Sync
@@ -61,7 +73,18 @@ WITH_MICROG=true mka bacon
 
 ## Fixes Applied
 
-### v6 (latest)
+### v7 (latest)
+| # | Fix | Repo |
+|---|-----|------|
+| 29 | Remove private SEPolicy types (system_suspend, storaged) from vendor policy | device tree |
+| 30 | Remove vendor property set from platform_app SEPolicy (neverallow fix) | device tree |
+| 31 | Spectrum QS tile for kernel profile switching | frameworks/base |
+| 32 | SpectrumTile su -c setprop fix (neverallow workaround) | frameworks/base |
+| 33 | Add missing API stubs (isShell, getModemService, resolveActivityAsUser) | frameworks/base |
+| 34 | README for frameworks_base fork | frameworks/base |
+| 35 | Add local_manifests to device tree | device tree |
+
+### v6
 
 - **#28** — Spectrum QS tile: add to stock + default tile list (was missing from `quick_settings_tiles_stock`, tile existed but not discoverable in Edit QS panel) [frameworks/base]
 
