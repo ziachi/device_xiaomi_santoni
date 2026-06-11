@@ -53,14 +53,15 @@ TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_CONFIG := santoni_treble_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8937
 TARGET_KERNEL_VERSION := 4.9
-TARGET_KERNEL_CLANG_VERSION := zyc_clang
-TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/$(TARGET_KERNEL_CLANG_VERSION)
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/aarch64-linux-gnu-
-TARGET_KERNEL_CROSS_COMPILE_ARM32_PREFIX := $(TARGET_KERNEL_CLANG_PATH)/bin/arm-linux-gnueabi-
+# Use default AOSP clang (clang-r536225) - zyc_clang removed
+# TARGET_KERNEL_CLANG_PATH - using vendor/lineage default
 TARGET_KERNEL_LLVM_BINUTILS := false
 
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+
+# ANT
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Audio
 AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT := true
@@ -144,7 +145,7 @@ DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/configs/manifests/compatibility_matrix.xm
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/manifests/framework_compatibility_matrix.xml
 
 # Init
-$(call soong_config_set,libinit,vendor_init_lib,//$(DEVICE_PATH):libinit_santoni)
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_santoni
 TARGET_RECOVERY_DEVICE_MODULES := libinit_santoni
 
 # Keystore
@@ -194,7 +195,7 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Vendor Security patch level
-VENDOR_SECURITY_PATCH := 2025-05-05
+VENDOR_SECURITY_PATCH := 2022-02-01
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
@@ -213,3 +214,11 @@ TARGET_HAS_BROKEN_WLAN_SET_INTERFACE := true
 
 # Inherit from the proprietary version
 -include vendor/xiaomi/santoni/BoardConfigVendor.mk
+
+# QCOM platform flags for media HAL
+QCOM_BOARD_PLATFORMS += msm8937
+MSM_VIDC_TARGET_LIST := msm8937
+
+
+# Santoni is A-only (non-A/B)
+AB_OTA_UPDATER := false

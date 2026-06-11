@@ -80,7 +80,7 @@ service vendor.qcamerasvr /vendor/bin/mm-qcamera-daemon
 on property:vold.decrypt=trigger_restart_framework
     restart vendor.camera-provider-2-4
     restart vendor.fps_hal
-    restart vendor.gx_fpd
+#    restart vendor.gx_fpd  # DISABLED: sensor not present, crash loop
     start wcnss-service
 
 #Start up peripheral manager

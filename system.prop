@@ -1,7 +1,7 @@
 #system.prop for msm8937
 
 # Audio
-audio.offload.disable=true
+audio.offload.disable=false
 vendor.fastrpc.disable.adsprpcd_sensorspd.daemon=1
 
 # Bluetooth
@@ -175,3 +175,53 @@ persist.sys.wfd.virtual=0
 
 # Zygote
 zygote.critical_window.minute=10
+
+# ========================
+# Performance Tuning (2GB)
+# ========================
+# Faster app launch
+persist.device_config.runtime_native.usap_pool_enabled=false
+# Reduce background process limit  
+ro.sys.fw.bg_apps_limit=16
+# Aggressive cached app compaction
+persist.sys.appcompact.enable_app_compact=true
+persist.sys.appcompact.full_compact_type=2
+# Reduce window animation scale
+persist.sys.animator_duration_scale=0.5
+
+# Disable flags_health_check crash loop (suppresses 245+ resets)
+persist.device_config.configuration.disable_server_configurable_flags_reset=true
+
+# Spectrum Kernel Manager
+persist.spectrum.kernel=1
+persist.spectrum.profile=0
+
+# v4 Fix #14: Disable Settings Intelligence (5K spam lines, CPU waste)
+persist.log.tag.SettingsIntelligence=S
+persist.log.tag.com.google.android.settings.intelligence=S
+
+# v4 Fix #17: Disable Google adservices (saves ~10MB RAM)
+persist.device_config.adservices.enabled=false
+persist.device_config.adservices.measurement_kill_switch=true
+persist.device_config.adservices.topics_kill_switch=true
+persist.device_config.adservices.fledge_kill_switch=true
+
+# v4 Fix #18: Reduce GMS background activity (95 GC/5min in logcat)
+# Limit GMS chimera scheduled tasks
+ro.com.google.gmsversion=15_202501
+# Restrict background GMS wakeups
+persist.device_config.gms_games.enabled=false
+# Limit GCM wakeups
+ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
+ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
+
+# v5 Fix #25: GMS memory & background limiter for 2GB RAM
+# Limit max cached processes system-wide
+persist.device_config.activity_manager.max_cached_processes=16
+# Defer dex2oat to idle/charging state to reduce first boot lag
+pm.dexopt.install=speed-profile
+pm.dexopt.bg-dexopt=speed-profile
+pm.dexopt.boot-after-ota=verify
+pm.dexopt.first-boot=verify
+# Limit GMS background service restarts
+persist.device_config.activity_manager.max_phantom_processes=6

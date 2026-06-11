@@ -34,3 +34,8 @@ install_symlink {
     installed_location: "firmware/wlan/prima/wlan_mac.bin",
     symlink_target: "/mnt/vendor/persist/wlan_mac.bin",
 }
+
+cc_defaults {
+    name: "vendor_init_defaults",
+    whole_static_libs: ["libinit_santoni"],
+}

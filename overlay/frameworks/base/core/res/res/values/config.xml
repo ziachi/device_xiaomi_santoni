@@ -553,7 +553,4 @@
     <!-- Whether the device supports Smart Pixels -->
     <bool name="config_supportSmartPixels">false</bool>
 
-    <!-- See AmbientSensor.AmbientColorTemperatureSensor. The ambient color temperature sensor name. -->
-    <string name="config_displayWhiteBalanceColorTemperatureSensorName">com.google.sensor.color</string>
-
 </resources>

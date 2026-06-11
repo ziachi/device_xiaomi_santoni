@@ -1,86 +1,141 @@
-# Device Tree for Xiaomi Redmi 4X (santoni)
+# Matrixx 15 (Android 15) — Xiaomi Redmi 4X (santoni)
 
-## Matrixx 13 (Android 16) — Build Fixes
+Unofficial ProjectMatrixx v11.9.0 build for santoni.  
+Optimized for 2GB RAM, SELinux enforcing.  
+Available in two variants: **Vanilla** (pure AOSP) and **microG** (with GmsCore + Vending).
 
-> **⚠️ Build masih broken** — stopped di ~3% ninja compilation.
+## Repositories
 
-### Quick Setup
+| Repo | GitHub | Branch | Path |
+|------|--------|--------|------|
+| Device tree | [device_xiaomi_santoni](https://github.com/ziachi/device_xiaomi_santoni) | `matrixx-15` | `device/xiaomi/santoni` |
+| Vendor blobs | [vendor_xiaomi_santoni](https://github.com/ziachi/vendor_xiaomi_santoni) | `matrixx-15` | `vendor/xiaomi/santoni` |
+| Kernel | [kernel_xiaomi_msm8937](https://github.com/ziachi/kernel_xiaomi_msm8937) | `matrixx-15` | `kernel/xiaomi/msm8937` |
 
+**Also required:** `frameworks/base` from `ProjectMatrixx/frameworks_base` (branch `15.0`)  
+> Note: Matrixx renamed `android_frameworks_base` → `frameworks_base`, so the default manifest won't find it. The local manifest override handles this.
+
+## Build Instructions
+
+### 1. Initialize Matrixx source
 ```bash
-# 1. Init Matrixx 13 repo
-repo init -u https://github.com/ProjectMatrixx/android.git -b 16.0 --depth=1
-
-# 2. Copy local manifest (contains all 21 fixed repos)
-mkdir -p .repo/local_manifests
-cp device/xiaomi/santoni/matrixx_santoni.xml .repo/local_manifests/
-
-# 3. Sync
-repo sync -c --no-clone-bundle --no-tags -j$(nproc)
-
-# 4. Build
-source build/envsetup.sh
-lunch lineage_santoni-ap4a-userdebug
-mka bacon
+repo init -u https://github.com/AnierinBliss/matrixx_android.git -b 15.0 --git-lfs --depth=1
 ```
 
-### Fixed Repos (21 total)
+### 2. Add local manifest
+```bash
+mkdir -p .repo/local_manifests
+cp device/xiaomi/santoni/manifests/santoni.xml .repo/local_manifests/
+# Or if device tree not yet cloned:
+curl -o .repo/local_manifests/santoni.xml \
+  https://raw.githubusercontent.com/ziachi/device_xiaomi_santoni/matrixx-15/manifests/santoni.xml
+```
 
-| Path | GitHub Repo | Original Source |
-| :--- | :---------- | :-------------- |
-| `art` | [android_art](https://github.com/ziachi/android_art/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `bionic` | [android_bionic](https://github.com/ziachi/android_bionic/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `hardware/interfaces` | [android_hardware_interfaces](https://github.com/ziachi/android_hardware_interfaces/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `frameworks/base` | [android_frameworks_base](https://github.com/ziachi/android_frameworks_base/tree/matrixx-16.0-santoni) | ProjectMatrixx / AOSP |
-| `frameworks/opt/telephony` | [android_frameworks_opt_telephony](https://github.com/ziachi/android_frameworks_opt_telephony/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `frameworks/native` | [android_frameworks_native](https://github.com/ziachi/android_frameworks_native/tree/matrixx-16.0-santoni) | LineageOS / AOSP |
-| `frameworks/av` | [android_frameworks_av](https://github.com/ziachi/android_frameworks_av/tree/matrixx-16.0-santoni) | LineageOS / AOSP |
-| `system/sepolicy` | [android_system_sepolicy](https://github.com/ziachi/android_system_sepolicy/tree/matrixx-16.0-santoni) | LineageOS / AOSP |
-| `build/soong` | [android_build_soong](https://github.com/ziachi/android_build_soong/tree/matrixx-16.0-santoni) | LineageOS / AOSP |
-| `device/xiaomi/santoni` | [device_xiaomi_santoni](https://github.com/ziachi/device_xiaomi_santoni/tree/matrixx-16.0-santoni) | androidsantoni |
-| `packages/apps/DocumentsUI` | [android_packages_apps_DocumentsUI](https://github.com/ziachi/android_packages_apps_DocumentsUI/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `packages/apps/GameSpace` | [android_packages_apps_GameSpace](https://github.com/ziachi/android_packages_apps_GameSpace/tree/matrixx-16.0-santoni) | ProjectMatrixx |
-| `packages/modules/Wifi` | [android_packages_modules_Wifi](https://github.com/ziachi/android_packages_modules_Wifi/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `packages/modules/Bluetooth` | [android_packages_modules_Bluetooth](https://github.com/ziachi/android_packages_modules_Bluetooth/tree/matrixx-16.0-santoni) | LineageOS / crDroid |
-| `packages/modules/Connectivity` | [android_packages_modules_Connectivity](https://github.com/ziachi/android_packages_modules_Connectivity/tree/matrixx-16.0-santoni) | ProjectMatrixx |
-| `packages/services/OmniJaws` | [android_packages_services_OmniJaws](https://github.com/ziachi/android_packages_services_OmniJaws/tree/matrixx-16.0-santoni) | ProjectMatrixx / OmniROM |
-| `packages/services/Telecomm` | [android_packages_services_Telecomm](https://github.com/ziachi/android_packages_services_Telecomm/tree/matrixx-16.0-santoni) | LineageOS / AOSP |
-| `tools/netsim` | [android_tools_netsim](https://github.com/ziachi/android_tools_netsim/tree/matrixx-16.0-santoni) | AOSP |
-| `kernel/xiaomi/msm8937` | [kernel_xiaomi_msm8937](https://github.com/ziachi/kernel_xiaomi_msm8937/tree/matrixx-16.0-santoni) | androidsantoni |
-| `cts` | [android_cts](https://github.com/ziachi/android_cts/tree/matrixx-16.0-santoni) | AOSP |
-| `platform_testing` | [android_platform_testing](https://github.com/ziachi/android_platform_testing/tree/matrixx-16.0-santoni) | AOSP |
+### 3. Sync
+```bash
+repo sync -c -j$(nproc) --force-sync --no-clone-bundle --no-tags
+```
 
-All repos on branch `matrixx-16.0-santoni`.
+### 4. Build
+```bash
+source build/envsetup.sh
+lunch lineage_santoni-ap4a-userdebug
 
-### Patches Applied
-- RAM 2GB optimization (dalvik heap, LMK, zRAM)
-- Credit @kalomakan (unofficial build)
-- ADB enabled by default with auth
-- SELinux enforcing mode
-- ~190 missing aconfig flags
-- 20+ build system fixes (see commit history per repo)
+# Vanilla (default — no Google, no microG):
+mka bacon
 
-### Root Cause
-Matrixx 13 manifest mixes repos from ProjectMatrixx, crDroid (significantly ahead), and LineageOS/AOSP. Multiple repos had incompatible APIs and needed swapping to LineageOS `lineage-23.0`.
+# microG (with GmsCore + Vending):
+WITH_MICROG=true mka bacon
+```
 
-### Maintainer
-@ziachi
+## Device Specs
 
-## Spec Sheet
+| Spec | Detail |
+|------|--------|
+| SoC | Qualcomm MSM8937 (Snapdragon 430) |
+| CPU | 4x A53 @1.4GHz + 4x A53 @1.2GHz |
+| GPU | Adreno 505 |
+| RAM | 2GB / 3GB |
+| Kernel | 4.9.227 |
+| Defconfig | `santoni_treble_defconfig` |
 
-| Feature                 | Specification                     |
-| :---------------------- | :-------------------------------- |
-| CPU                     | Octa-core 1.4 GHz Cortex-A53      |
-| Chipset                 | Qualcomm MSM8940 Snapdragon 435   |
-| GPU                     | Adreno 505                        |
-| Memory                  | 2/3 GB                            |
-| Shipped Android Version | 6.0.1                             |
-| Storage                 | 16/32 GB                          |
-| MicroSD                 | Up to 256 GB                      |
-| Battery                 | 4100 mAh (non-removable)          |
-| Dimensions              | 139 x 69 x 8.65 mm                |
-| Display                 | 720 x 1280 pixels, 5" (~294 PPI)   |
-| Rear Camera             | 13 MP, LED flash                  |
-| Front Camera            | 5 MP                              |
-| Release Date            | May 2017                          |
+## Fixes Applied
 
-![Redmi 4X](https://cdn.tgdd.vn/Products/Images/42/99145/xiaomi-redmi-4x-400-400x460.png "Redmi 4X")
+### v6 (latest)
+
+- **#28** — Spectrum QS tile: add to stock + default tile list (was missing from `quick_settings_tiles_stock`, tile existed but not discoverable in Edit QS panel) [frameworks/base]
+
+### v5
+| # | Fix | Files |
+|---|-----|-------|
+| 22 | Suppress QTI PowerHAL + ANDR-PERF log spam | `vendor.prop` |
+| 23 | Remove radio.config HAL (fix poll loop) | `manifest.xml` |
+| 24 | Suppress WifiHAL getCachedScanData spam | `vendor.prop`, WiFi module patch |
+| 25 | GMS memory limiter for 2GB RAM | `system.prop` |
+| 26 | Spectrum QS Tile (quick settings toggle) | `frameworks/base`, sepolicy |
+| 27 | microG GmsCore + Vending integration | `device.mk`, `prebuilt/microg/`, permissions XML |
+
+### v4
+| # | Fix | Files |
+|---|-----|-------|
+| 12 | Disable QTI PowerHAL service | `init.disable_services.rc` |
+| 13 | Fix Spectrum profile activation | `init.santoni_perf.rc`, `init.spectrum.rc` |
+| 14 | Suppress Settings Intelligence spam | `system.prop` |
+| 15 | Disable Dolby audio (no DAX HW) | `vendor.prop`, `init.disable_services.rc`, vendor APKs removed |
+| 16 | Aggressive LMK for 2GB + GApps | `device.mk`, `vendor.prop`, `system.prop` |
+| 17 | Disable Google AdServices | `system.prop` |
+| 18 | Reduce GMS background activity | `system.prop` |
+| 19 | Play Integrity (Pixel 8a fingerprint) | `configs/pif/pif.json`, `vendor.prop` |
+| 20 | Enable FRP persistent_data_block | `device.mk` |
+| 21 | Disable ATFWD-daemon | `init.disable_services.rc` |
+
+### v3
+| # | Fix | Files |
+|---|-----|-------|
+| 1 | gx_fpd crash loop disable | `init.target.rc` |
+| 2 | QTI Perf Qindx 121 spam fix | `vendor.prop` |
+| 3 | QTI PowerHAL boost hint disable | `vendor.prop` |
+| 4 | flags_health_check loop fix | `system.prop` |
+| 5 | Settings WiFi NPE crash fix | `SettingsPreferenceFragment.java` |
+| 6 | Camera libstdc++.so missing | patchelf vendor blobs |
+| 7 | Flashlight no camera IDs | fixed by #6 |
+| 8 | gx_fpd libstdc++.so | patchelf vendor blobs |
+| 9 | Maintainer overlay | `cr_strings.xml` |
+| 10 | DolbyProvider disable | device.mk |
+| 11 | Spectrum profiles | `init.spectrum.rc`, `init.santoni_perf.rc` |
+
+## microG Integration
+
+Prebuilt microG GmsCore (v0.3.15.250932) and Vending, built from source.  
+Controlled by `WITH_MICROG` build flag (default: `false`).
+
+| Package | Location | Size |
+|---------|----------|------|
+| GmsCore | `prebuilt/microg/GmsCore.apk` | 89 MB |
+| GmcVending | `prebuilt/microg/GmcVending.apk` | 4.4 MB |
+
+Permissions: `configs/permissions/privapp-permissions-microg.xml`  
+Source: [microg/GmsCore](https://github.com/microg/GmsCore)
+
+## Spectrum Profiles
+
+| Profile | Governor | CPU Max | GPU Max | Use Case |
+|---------|----------|---------|---------|----------|
+| 0 Balance | interactive | 1.4/1.0 GHz | 450 MHz | Daily use |
+| 1 Performance | interactive (aggressive) | 1.5/1.2 GHz | 450 MHz | Gaming, heavy apps |
+| 2 Battery | conservative | 1.0/0.9 GHz | 375 MHz | Max battery life |
+| 3 Gaming | performance | 1.5/1.2 GHz | 450 MHz | Locked max clocks |
+
+## Maintainer
+**@kalomakan / @ziachi**
+
+## Downloads
+[GitHub Releases](https://github.com/ziachi/device_xiaomi_santoni/releases)
+
+---
+
+## Thanks To
+- [androidsantoni](https://github.com/androidsantoni) — device tree, vendor, and kernel base
+- [omansh-krishn](https://github.com/omansh-krishn) — thanks for keeping the source alive
+- [LineageOS](https://github.com/LineageOS/android_device_xiaomi_santoni) — original santoni device tree & [kernel upstream](https://github.com/LineageOS/android_kernel_xiaomi_msm8937)
+- [ProjectMatrixx / AnierinBliss](https://github.com/AnierinBliss/matrixx_android) — ROM base & [frameworks](https://github.com/ProjectMatrixx/frameworks_base)

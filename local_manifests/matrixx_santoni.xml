@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="ziachi" fetch="https://github.com/ziachi" />
+
+  <!-- Device tree (patched for Matrixx 15.0) -->
+  <project path="device/xiaomi/santoni"
+           name="device_xiaomi_santoni"
+           remote="ziachi"
+           revision="matrixx-15" />
+
+  <!-- Kernel -->
+  <project path="kernel/xiaomi/msm8937"
+           name="kernel_xiaomi_msm8937"
+           remote="ziachi"
+           revision="matrixx-15" />
+
+  <!-- Vendor blobs -->
+  <project path="vendor/xiaomi/santoni"
+           name="vendor_xiaomi_santoni"
+           remote="ziachi"
+           revision="matrixx-15" />
+
+  <!-- Patched Telephony (crDroid fork - isShell + getModemService fixes) -->
+  <project path="packages/services/Telephony"
+           name="android_packages_services_Telephony"
+           remote="ziachi"
+           revision="matrixx-15"
+           clone-depth="1" />
+
+  <!-- Patched IntentResolver (LineageOS fork - resolveActivityAsUser fix) -->
+  <project path="packages/modules/IntentResolver"
+           name="android_packages_modules_IntentResolver"
+           remote="ziachi"
+           revision="matrixx-15"
+           clone-depth="1" />
+</manifest>

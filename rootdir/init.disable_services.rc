@@ -1,0 +1,20 @@
+# v4: Disable problematic vendor services
+# Fix #12 — QTI Power HAL service (calls missing perf HAL = 58K errors)
+# Fix #21 — ATFWD-daemon (blocked syscall crash loop = 672 errors)
+
+# Override power-service-qti: it depends on perf HAL which we disabled
+# This eliminates 60% of all logcat errors
+service vendor.power-hal-1-0 /vendor/bin/hw/android.hardware.power-service-qti
+    override
+    disabled
+
+# Override ATFWD daemon: AT command forward, not needed on santoni
+# Crashes due to seccomp blocking gettid syscall
+service vendor.atfwd /vendor/bin/ATFWD-daemon
+    override
+    disabled
+
+# Fix #15 — Dolby DMS HAL service (MSM8937 no DAX hardware = 200+ errors)
+service dms-hal-1-0 /vendor/bin/hw/vendor.dolby.hardware.dms@1.0-service
+    override
+    disabled

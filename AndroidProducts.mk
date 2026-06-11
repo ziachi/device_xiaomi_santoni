@@ -1,3 +1,4 @@
+# Matrixx 12 Android 15 Santoni
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_santoni.mk
 

@@ -30,6 +30,7 @@ $(call inherit-product, $(LOCAL_PATH)/symlinks.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage \
+    
 
 # RRO (Runtime Resource Overlay)
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -94,6 +95,11 @@ PRODUCT_COMPRESSED_APEX := false
 # APN
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/apns-conf.xml
+
+# ANT
+PRODUCT_PACKAGES += \
+    AntHalService \
+    libantradio
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -224,19 +230,19 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
 
-# Dolby
+# Dolby (DISABLED - MSM8937 no DAX support)
 TARGET_EXCLUDES_AUDIOFX := true
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/dolby/dax-default.xml:$(TARGET_COPY_OUT_ODM)/etc/dolby/dax-default.xml \
-    $(LOCAL_PATH)/configs/dolby/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml \
-    $(LOCAL_PATH)/configs/dolby/config-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxappui.xml \
-    $(LOCAL_PATH)/configs/dolby/config-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxservice.xml \
-    $(LOCAL_PATH)/configs/dolby/hiddenapi-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/hiddenapi-com.dolby.daxservice.xml \
-    $(LOCAL_PATH)/configs/dolby/privapp-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxappui.xml \
-    $(LOCAL_PATH)/configs/dolby/privapp-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxservice.xml
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/dolby/dax-default.xml:$(TARGET_COPY_OUT_ODM)/etc/dolby/dax-default.xml \
+#    $(LOCAL_PATH)/configs/dolby/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml \
+#    $(LOCAL_PATH)/configs/dolby/config-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxappui.xml \
+#    $(LOCAL_PATH)/configs/dolby/config-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/config-com.dolby.daxservice.xml \
+#    $(LOCAL_PATH)/configs/dolby/hiddenapi-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/hiddenapi-com.dolby.daxservice.xml \
+#    $(LOCAL_PATH)/configs/dolby/privapp-com.dolby.daxappui.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxappui.xml \
+#    $(LOCAL_PATH)/configs/dolby/privapp-com.dolby.daxservice.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-com.dolby.daxservice.xml
 
-# Dolby VNDK libs
+# Dolby (DISABLED - MSM8937 no DAX support) VNDK libs
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v33/arm/arch-arm-armv7-a-neon/shared/vndk-core/libstagefright_foundation.so:$(TARGET_COPY_OUT_VENDOR)/lib/libstagefright_foundation-v33.so \
     prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-core/libstagefright_foundation.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libstagefright_foundation-v33.so
@@ -490,11 +496,7 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.c_shim@1.0 \
     android.hardware.radio.c_shim@1.1 \
     android.hardware.radio.c_shim@1.2 \
-    android.hardware.radio.config@1.1-service.wrapper
-
-# Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.qti
+    # android.hardware.radio.config@1.1-service.wrapper  # v5 Fix #23: disabled, no HAL binary exists
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -520,9 +522,6 @@ PRODUCT_SOONG_NAMESPACES += device/xiaomi/santoni
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
-# Updater
-AB_OTA_UPDATER := false
-
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.3-service.basic
@@ -547,25 +546,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \
-    android.hardware.wifi-service \
-    android.hardware.wifi@1.1.vendor \
-    android.hardware.wifi@1.2.vendor \
-    android.hardware.wifi@1.3.vendor \
-    android.hardware.wifi@1.4.vendor \
-    android.hardware.wifi@1.5.vendor \
-    android.hardware.wifi@1.6.vendor \
-    android.hardware.wifi.hostapd@1.0.vendor \
-    android.hardware.wifi.hostapd@1.1.vendor \
-    android.hardware.wifi.hostapd@1.2.vendor \
-    android.hardware.wifi.hostapd@1.3.vendor \
-    android.hardware.wifi.supplicant@1.0.vendor \
-    android.hardware.wifi.supplicant@1.1.vendor \
-    android.hardware.wifi.supplicant@1.2.vendor \
-    android.hardware.wifi.supplicant@1.3.vendor \
-    android.hardware.wifi.supplicant@1.4.vendor \
-    android.hardware.tetheroffload.config@1.0.vendor \
-    android.hardware.tetheroffload.control@1.0.vendor \
-    android.hardware.tetheroffload.control@1.1.vendor
+    android.hardware.wifi-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
@@ -615,15 +596,23 @@ ART_BUILD_TARGET_DEBUG := false
 ART_BUILD_HOST_NDEBUG := true
 ART_BUILD_HOST_DEBUG := false
 
-# === RAM 2GB Optimization ===
+# Inherit several Android Go Configurations(Beneficial for everyone, even on non-Go devices)
+PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
+
+# ========================
+# 2GB RAM Optimization
+# ========================
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapgrowthlimit=128m \
     dalvik.vm.heapsize=256m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m \
-    ro.config.low_ram=false \
+    dalvik.vm.heapmaxfree=8m
+
+# Low Memory Killer
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.low=1001 \
     ro.lmk.medium=800 \
     ro.lmk.critical=0 \
@@ -631,19 +620,86 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.upgrade_pressure=100 \
     ro.lmk.downgrade_pressure=100 \
     ro.lmk.kill_heaviest_task=true \
-    ro.sys.fw.bg_apps_limit=24 \
-    persist.sys.zram_enabled=1 \
+    ro.lmk.kill_timeout_ms=50 \
+    ro.lmk.use_minfree_levels=true
+
+    ro.lmk.thrashing_limit=30 \
+    ro.lmk.thrashing_limit_decay=50 \
+    ro.lmk.swap_free_low_percentage=20 \
+    ro.lmk.psi_partial_stall_ms=200 \
+    ro.lmk.psi_complete_stall_ms=700 \
+
+# zRAM
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.zram.mark_idle_delay_mins=60 \
     ro.zram.first_wb_delay_mins=180 \
     ro.zram.periodic_wb_delay_hours=24
 
-# === ADB enabled by default (with auth) ===
-PRODUCT_PROPERTY_OVERRIDES += \
+# ========================
+# ADB enabled by default
+# ========================
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=1 \
-    ro.debuggable=1 \
-    persist.service.adb.enable=1 \
-    ro.sys.usb.default.config=mtp,adb
+    ro.adb.secure=1
 
-# === Maintainer Credit ===
+# ========================
+# SELinux enforcing
+# ========================
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.build.selinux=1
+
+# Matrixx Maintainer
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.matrixx.maintainer=kalomakan/ziachi
+
+# ========================
+# Low RAM Mode (Android 15)
+# ========================
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.low_ram=true \
+    ro.config.per_app_memcg=false
+
+# ========================
+# VM Tuning (reduce I/O thrashing)
+# ========================
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.config.swap=false
+
+# Performance init script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.santoni_perf.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.santoni_perf.rc \
+    $(LOCAL_PATH)/rootdir/init.spectrum.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.spectrum.rc \
+    $(LOCAL_PATH)/rootdir/init.disable_services.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.disable_services.rc
+
+# ========================
+# Play Integrity Fix (PIF) configuration
+# ========================
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/pif/pif.json:$(TARGET_COPY_OUT_PRODUCT)/etc/pif.json
+
+# ========================
+# Fix #20: Enable persistent_data_block (needed for PI + FRP)
+# ========================
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.frp.pst=/dev/block/bootdevice/by-name/config
+
+# =========================================
+# microG GmsCore + Vending (#27)
+# Default: vanilla (no microG)
+# Build with microG: WITH_MICROG=true mka bacon
+# =========================================
+WITH_MICROG ?= false
+
+ifeq ($(WITH_MICROG),true)
+PRODUCT_PACKAGES += \
+    GmsCore \
+    GmcVending
+
+# microG privileged permissions
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-microg.xml
+
+# Default permissions for microG (auto-grant on first boot)
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-microg.xml
+endif

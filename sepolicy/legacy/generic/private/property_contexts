@@ -33,3 +33,6 @@ ro.netflix.bsp_rev                 u:object_r:vendor_exported_system_prop:s0 exa
 
 # Beluga
 ro.vendor.beluga.                         u:object_r:vendor_exported_system_prop:s0
+
+# Spectrum kernel profiles - allow system_server (SystemUI QS tile) to set
+persist.spectrum.           u:object_r:system_prop:s0
