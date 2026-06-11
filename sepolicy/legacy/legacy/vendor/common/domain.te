@@ -71,3 +71,9 @@ allow domain qti_debugfs:dir search;
 allow { domain - isolated_app_all } sysfs_kgsl:dir search;
 # allow all context to read gpu model
 allow { domain - isolated_app_all } sysfs_kgsl_gpu_model:file r_file_perms;
+
+# ============================================
+# [v10] Suppress harmless one-off SELinux denials
+# Only using types known to exist in vendor policy
+# ============================================
+dontaudit domain vendor_default_prop:file read;

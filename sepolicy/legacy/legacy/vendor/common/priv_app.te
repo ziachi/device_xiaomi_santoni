@@ -29,3 +29,16 @@ hal_client_domain(priv_app, hal_perf)
 # TODO(b/123050471): this grants renderscript exec permissions to the
 # priv_app domain
 allow priv_app rs_exec:file rx_file_perms;
+# ============================================
+# [v10] GApps compatibility — Play Store (com.android.vending)
+# ============================================
+
+# Allow Play Store to read baseband/modem info for device compatibility checks
+get_prop(priv_app, baseband_prop)
+
+# Allow Play Store to read vendor properties
+get_prop(priv_app, vendor_camera_prop)
+
+# Suppress harmless denials
+dontaudit priv_app vendor_default_prop:file read;
+dontaudit priv_app default_prop:file read;

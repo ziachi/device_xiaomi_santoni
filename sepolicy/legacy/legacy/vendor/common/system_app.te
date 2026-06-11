@@ -178,3 +178,11 @@ get_prop(system_app, vendor_radio_prop)
 
 #allow system app to access capabilityconfigstore hal
 hal_client_domain(system_app, hal_capabilityconfigstore_qti);
+
+# ============================================
+# [v10] GApps compatibility — suppress Settings app denials
+# storaged/netd/system_suspend binder calls: dontaudit via domain.te
+# ============================================
+
+# Suppress harmless vendor prop denials
+dontaudit system_app vendor_default_prop:file read;

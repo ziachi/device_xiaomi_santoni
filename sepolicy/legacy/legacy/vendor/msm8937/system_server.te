@@ -29,3 +29,10 @@ allow system_server resourcecache_data_file:dir create_dir_perms;
 allow system_server resourcecache_data_file:file create_file_perms;
 
 allow system_server sysfs_virtualkeys:file r_file_perms;
+
+# ============================================
+# [v10] ANR diagnostics — binder transaction debugging
+# system_server reads /sys/kernel/debug/binder/transactions during ANR dumps
+# ============================================
+dontaudit system_server debugfs:file { read open getattr };
+dontaudit system_server debugfs:dir { search };
