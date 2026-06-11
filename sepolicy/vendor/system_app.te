@@ -20,3 +20,11 @@ get_prop(system_app, baseband_prop)
 #FM 
 allow system_app fm_radio_device:chr_file r_file_perms;
 get_prop(system_app, vendor_bluetooth_prop)
+
+# Fix Settings app SELinux denials - allow binder calls to HALs
+allow system_app hal_audio_default:binder call;
+allow system_app hal_wifi_default:binder call;
+allow system_app hal_wifi_supplicant_default:binder call;
+allow system_app netd:binder call;
+allow system_app system_suspend:binder call;
+allow system_app storaged:binder call;
