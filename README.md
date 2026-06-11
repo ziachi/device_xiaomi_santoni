@@ -2,7 +2,9 @@
 
 Unofficial ProjectMatrixx v11.9.0 build for santoni.  
 Optimized for 2GB RAM, SELinux enforcing.  
-Available in two variants: **Vanilla** (pure AOSP) and **microG** (with GmsCore + Vending).
+**Vanilla only** — pure AOSP, no Google Services.
+
+> **microG Status:** Dropped as of V9. microG GmsCore was bundled but never activated properly despite multiple fix attempts. The build flag `WITH_MICROG=true` is no longer supported.
 
 ## Repositories
 
@@ -90,8 +92,6 @@ lunch lineage_santoni-ap4a-userdebug
 # Vanilla (default — no Google, no microG):
 mka bacon
 
-# microG (with GmsCore + Vending):
-WITH_MICROG=true mka bacon
 ```
 
 ## Device Specs
@@ -107,7 +107,16 @@ WITH_MICROG=true mka bacon
 
 ## Fixes Applied
 
-### v8 (latest)
+### v9 (latest)
+| # | Fix | Repo |
+|---|-----|------|
+| 57 | Fix TaskPersister recents dir timing (move to boot_completed) | device tree |
+| 58 | Disable WiFi batched scan (fix getCachedScanData HAL error) | device tree |
+| 59 | Suppress AccessPersistence fs-verity log (kernel 4.9 no fs-verity) | device tree |
+| 60 | Suppress BluetoothPowerStatsCollector log (vendor HAL limitation) | device tree |
+| 61 | Create QTI PowerHAL perfd directories | device tree |
+
+### v8
 | # | Fix | Repo |
 |---|-----|------|
 | 41 | Fix microG build variant (`WITH_MICROG=true` → MicroG tag) | vendor/lineage |
@@ -231,19 +240,19 @@ device/xiaomi/santoni/
 └── vendor.prop
 ```
 
-## microG Integration
+## microG Integration (DROPPED)
 
-Prebuilt microG GmsCore (v0.3.15.250932) and Vending, built from source.  
-Controlled by `WITH_MICROG` build flag (default: `false`).
-
-| Package | Location | Size |
-|---------|----------|------|
-| GmsCore | `prebuilt/microg/GmsCore.apk` | 89 MB |
-| GmcVending | `prebuilt/microg/GmcVending.apk` | 4.4 MB |
-
-Permissions: `configs/permissions/privapp-permissions-microg.xml`  
-Signature spoofing: Built-in Matrixx metadata-based approach (`ComputerEngine.java`)  
-Source: [microg/GmsCore](https://github.com/microg/GmsCore)
+> **Status: Dropped as of V9.**  
+> microG GmsCore (v0.3.15.250932) and Vending were bundled as prebuilt APKs,
+> but GmsCore was never detected/activated by the system despite:
+> - Correct FAKE_PACKAGE_SIGNATURE permission
+> - SELinux policies for gmscore_app
+> - Proper privapp-permissions XML
+>
+> Root cause: unknown — `ActivityManager` reports "Unknown package: com.google.android.gms"
+> even with the APK installed. The `WITH_MICROG=true` build flag is no longer supported.
+>
+> Prebuilt files remain in `prebuilt/microg/` for reference but are not included in builds.
 
 ## Spectrum Profiles
 
