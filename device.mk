@@ -706,14 +706,6 @@ endif
 
 
 # =========================================
-# Fix #3: Fingerprint auto-detection script
-# Detects Goodix/FPC sensor at boot and starts HAL
-# =========================================
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.fingerprint_detect.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint_detect.sh
-
-
-# =========================================
 # Fix #4: Disable LineageOS Health feature
 # Santoni has no charging control / fast charge HW
 # Without this, HealthInterfaceService starts but never
@@ -722,7 +714,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/disable-health-feature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
 
-
 # =========================================
 # Fix #7: Disable APK fs-verity (kernel 4.9 has no fs-verity support)
 # Stops "Failed to verity-protect runtime-permissions" spam (280x in logcat)
@@ -730,3 +721,10 @@ PRODUCT_COPY_FILES += \
 # =========================================
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.apk_verity.mode=0
+
+# =========================================
+# Fix #3: Fingerprint auto-detection script
+# Detects Goodix/FPC sensor at boot and starts HAL
+# =========================================
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.fingerprint_detect.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint_detect.sh
