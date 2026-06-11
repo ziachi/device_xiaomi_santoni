@@ -8,11 +8,11 @@ Available in two variants: **Vanilla** (pure AOSP) and **microG** (with GmsCore 
 
 | Repo | GitHub | Branch | Path |
 |------|--------|--------|------|
-| Device tree | [device_xiaomi_santoni](https://github.com/ziachi/device_xiaomi_santoni) | `matrixx-15` | `device/xiaomi/santoni` |
-| Vendor blobs | [vendor_xiaomi_santoni](https://github.com/ziachi/vendor_xiaomi_santoni) | `matrixx-15` | `vendor/xiaomi/santoni` |
-| Kernel | [kernel_xiaomi_msm8937](https://github.com/ziachi/kernel_xiaomi_msm8937) | `matrixx-15` | `kernel/xiaomi/msm8937` |
-| Frameworks (fork) | [frameworks_base](https://github.com/ziachi/frameworks_base) | `15.0` | `frameworks/base` |
-| Vendor Lineage (fork) | [vendor_lineage](https://github.com/ziachi/vendor_lineage) | `15.0` | `vendor/lineage` |
+| Device tree | [device_xiaomi_santoni](https://github.com/ziachi/device_xiaomi_santoni/tree/matrixx-15) | `matrixx-15` | `device/xiaomi/santoni` |
+| Vendor blobs | [vendor_xiaomi_santoni](https://github.com/ziachi/vendor_xiaomi_santoni/tree/matrixx-15) | `matrixx-15` | `vendor/xiaomi/santoni` |
+| Kernel | [kernel_xiaomi_msm8937](https://github.com/ziachi/kernel_xiaomi_msm8937/tree/matrixx-15) | `matrixx-15` | `kernel/xiaomi/msm8937` |
+| Frameworks (fork) | [frameworks_base](https://github.com/ziachi/frameworks_base/tree/15.0) | `15.0` | `frameworks/base` |
+| Vendor Lineage (fork) | [vendor_lineage](https://github.com/ziachi/vendor_lineage/tree/15.0) | `15.0` | `vendor/lineage` |
 
 > **Note:** `frameworks/base` uses a fork from `ziachi/frameworks_base` (not upstream `ProjectMatrixx/frameworks_base`).
 > This fork contains Spectrum QS tile patches + santoni-specific API fixes.
