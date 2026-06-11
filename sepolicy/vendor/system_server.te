@@ -33,3 +33,6 @@ allow system_server app_zygote:process { getpgid };
 allow system_server vendor_alarm_boot_prop:file { read open getattr };
 allow system_server thermal_service:service_manager find;
 allow system_server kernel:system syslog_read;
+
+# Spectrum kernel profiles - allow reading profile property
+get_prop(system_server, vendor_spectrum_prop)

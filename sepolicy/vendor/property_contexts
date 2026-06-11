@@ -35,3 +35,6 @@ ro.vendor.ril.svdo              u:object_r:vendor_radio_prop:s0
 # WiFi
 vendor.wlan.                    u:object_r:vendor_wifi_prop:s0
 wifi.active.interface           u:object_r:wifi_prop:s0
+
+# Spectrum kernel profiles
+persist.spectrum.           u:object_r:vendor_spectrum_prop:s0
