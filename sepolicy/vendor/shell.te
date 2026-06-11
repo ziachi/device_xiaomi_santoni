@@ -7,3 +7,9 @@ allow shell adsprpcd_file:dir getattr;
 allow shell idmap_exec:file getattr;
 
 get_prop(shell, device_config_runtime_native_boot_prop)
+
+# Fix shell SELinux denials (adb debugging)
+get_prop(shell, qemu_sf_lcd_density_prop)
+get_prop(shell, baseband_prop)
+allow shell idmap_exec:file { execute read open getattr };
+allow shell fs_bpf:dir search;
