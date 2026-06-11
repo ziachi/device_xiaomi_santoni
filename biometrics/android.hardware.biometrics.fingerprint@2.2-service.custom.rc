@@ -61,3 +61,14 @@ on property:persist.sys.fp.onstart=1
     setprop ro.hardware.fingerprint goodix
     setprop ro.boot.fpsensor gdx
     start vendor.fps_hal
+
+# Auto-detect fingerprint sensor at boot
+service vendor.fp_detect /vendor/bin/init.fingerprint_detect.sh
+    class late_start
+    user system
+    group system
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start vendor.fp_detect

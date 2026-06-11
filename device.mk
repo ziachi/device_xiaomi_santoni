@@ -703,3 +703,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/default-permissions-microg.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/default-permissions/default-permissions-microg.xml
 endif
+
+
+# =========================================
+# Fix #3: Fingerprint auto-detection script
+# Detects Goodix/FPC sensor at boot and starts HAL
+# =========================================
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.fingerprint_detect.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint_detect.sh
