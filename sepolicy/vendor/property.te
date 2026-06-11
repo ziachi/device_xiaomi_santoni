@@ -20,5 +20,4 @@ vendor_internal_prop(persist_sensors_radio_prop)
 # Wlan
 vendor_internal_prop(vendor_wifi_prop)
 
-# Spectrum kernel profiles
-vendor_internal_prop(vendor_spectrum_prop)
+# Spectrum kernel profiles — moved to system_prop domain (persist.sys.spectrum.*)

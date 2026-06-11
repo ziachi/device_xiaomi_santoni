@@ -17,3 +17,8 @@ allow platform_app sysfs_battery_supply:file { getattr open read };
 allow platform_app sysfs_kgsl:dir search;
 allow platform_app sysfs_kgsl:file { getattr open read };
 
+
+# Spectrum kernel profile switching — allow SystemUI to read/set system_prop
+# Required for SpectrumTile QS tile (persist.sys.spectrum.profile)
+set_prop(platform_app, system_prop)
+get_prop(platform_app, system_prop)
