@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Santoni: SDM HAL returns generic mode names (mode_0, mode_1, etc.)
+     These strings map to ResourceUtils dynamic lookup pattern:
+     live_display_color_profile_{mode_name}_title/summary -->
+<resources>
+    <string name="live_display_color_profile_mode_0_title">Standard</string>
+    <string name="live_display_color_profile_mode_0_summary">Accurate colors and bright whites</string>
+    <string name="live_display_color_profile_mode_1_title">Enhanced</string>
+    <string name="live_display_color_profile_mode_1_summary">Enhanced colors for vivid display</string>
+    <string name="live_display_color_profile_mode_2_title">Natural</string>
+    <string name="live_display_color_profile_mode_2_summary">Realistic colors and flesh tones</string>
+    <string name="live_display_color_profile_mode_3_title">Cinema</string>
+    <string name="live_display_color_profile_mode_3_summary">Perfect color reproduction for video</string>
+    <string name="live_display_color_profile_mode_4_title">Dynamic</string>
+    <string name="live_display_color_profile_mode_4_summary">Enhanced colors and bright whites</string>
+    <string name="live_display_color_profile_mode_5_title">Warm</string>
+    <string name="live_display_color_profile_mode_5_summary">Warmer colors for less eye strain</string>
+    <string name="live_display_color_profile_mode_6_title">Cool</string>
+    <string name="live_display_color_profile_mode_6_summary">Cooler color temperature</string>
+    <string name="live_display_color_profile_mode_7_title">Saturated</string>
+    <string name="live_display_color_profile_mode_7_summary">Fully saturated colors</string>
+</resources>
