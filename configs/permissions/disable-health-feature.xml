@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Santoni: no charging control or fast charge HW
+     This empty XML overrides vendor/lineage org.lineageos.health.xml
+     to prevent HealthInterfaceService from publishing a dead binder -->
+<permissions>
+    <!-- feature intentionally NOT declared for santoni -->
+</permissions>

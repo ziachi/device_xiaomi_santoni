@@ -711,3 +711,13 @@ endif
 # =========================================
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.fingerprint_detect.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint_detect.sh
+
+
+# =========================================
+# Fix #4: Disable LineageOS Health feature
+# Santoni has no charging control / fast charge HW
+# Without this, HealthInterfaceService starts but never
+# publishes binder service → "null health service, SAD!" x30
+# =========================================
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/disable-health-feature.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
