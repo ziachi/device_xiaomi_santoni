@@ -66,6 +66,9 @@ on post-fs
     write /dev/ipa 1
 
 on post-fs-data
+    # Fix QTI PowerHAL: create perfd directories
+    mkdir /data/vendor/perfd 0770 root system
+    chmod 2770 /data/vendor/perfd
    #Create folder for mm-qcamera-daemon
    mkdir /data/vendor/qcam/ 0770 camera camera
 
