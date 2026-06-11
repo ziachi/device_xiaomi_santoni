@@ -10,3 +10,6 @@ get_prop(hal_camera_default, vendor_camera_prop)
 get_prop(hal_camera_default, bootanim_system_prop)
 
 dontaudit hal_camera_default default_prop:file read;
+
+# Allow camera HAL to read vendor default props
+get_prop(hal_camera_default, vendor_default_prop)

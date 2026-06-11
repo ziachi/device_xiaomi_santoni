@@ -1,3 +1,7 @@
 allow cameraserver mediacodec:binder call;
 allow cameraserver gpu_device:chr_file { ioctl open read write };
 allow cameraserver vendor_persist_camera2_prop:file read;
+
+# Fix camera SELinux denials — cameraserver reads vendor default props
+# (logcat: 16 denials for vendor_default_prop read)
+get_prop(cameraserver, vendor_default_prop)
