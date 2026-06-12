@@ -21,4 +21,4 @@ on property:sys.boot_completed=1
     setprop persist.sys.spectrum.profile 0
 
 on early-init
-    setprop persist.spectrum.kernel 1
+    setprop persist.sys.spectrum.kernel 1

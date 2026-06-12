@@ -191,8 +191,8 @@ persist.sys.animator_duration_scale=0.5
 persist.device_config.configuration.disable_server_configurable_flags_reset=true
 
 # Spectrum Kernel Manager
-persist.spectrum.kernel=1
-persist.spectrum.profile=1
+persist.sys.spectrum.kernel=1
+persist.sys.spectrum.profile=0
 
 # v4 Fix #14: Disable Settings Intelligence (5K spam lines, CPU waste)
 persist.log.tag.SettingsIntelligence=S
