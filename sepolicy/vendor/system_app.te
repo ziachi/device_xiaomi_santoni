@@ -25,3 +25,10 @@ get_prop(system_app, vendor_bluetooth_prop)
 allow system_app hal_audio_default:binder call;
 allow system_app hal_wifi_default:binder call;
 allow system_app hal_wifi_supplicant_default:binder call;
+
+# V15: Suppress binder/service denial for system_app
+# netd binder call from Settings (network info query) — harmless, fallback works
+dontaudit system_app netd:binder call;
+# service_manager find for suspend_control — harmless, power info query
+dontaudit system_app system_suspend_control_service:service_manager find;
+dontaudit system_app system_suspend_control_internal_service:service_manager find;
