@@ -11,3 +11,6 @@ allow qti_init_shell self:capability kill;
 
 allow vendor_qti_init_shell vendor_sysfs_slab_zshandle_storeuser:file w_file_perms;
 allow vendor_qti_init_shell vendor_sysfs_slab_zspage_storeuser:file w_file_perms;
+
+# V14: Allow init.qcom.post_boot to tune VM watermark
+allow qti_init_shell proc_watermark_scale_factor:file { open write };
