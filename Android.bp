@@ -39,3 +39,56 @@ cc_defaults {
     name: "vendor_init_defaults",
     whole_static_libs: ["libinit_santoni"],
 }
+
+// V13: Debloat stub — single real app that overrides all bloat packages
+// BUILD_PHONY_PACKAGE doesn't work (phony modules don't trigger overrides)
+// android_app with overrides: is the proper AOSP mechanism
+android_app {
+    name: "SantoniDebloat",
+    overrides: [
+        // V12 original 19 apps (298MB)
+        "GameSpace",
+        "LMOFreeform",
+        "LMOFreeformSidebar",
+        "OmniJaws",
+        "OmniStyle",
+        "Seedvault",
+        "DeviceDiagnostics",
+        "LiveWallpapersPicker",
+        "WallpaperBackup",
+        "ColumbusService",
+        "BatteryStatsViewer",
+        "LineageSetupWizard",
+        "AvatarPicker",
+        "Backgrounds",
+        "Twelve",
+        "MatLog",
+        "EasterEgg",
+        "ThemePicker",
+        "ThemesStub",
+        // V13 additional 10 apps (~50MB)
+        "Gallery2",
+        "Camelot",
+        "Etar",
+        "Recorder",
+        "Jelly",
+        "Profiles",
+        "QuickAccessWallet",
+        "AccessibilityMenu",
+        "CompanionDeviceManager",
+        // SystemUI clock faces (7 total ~6MB)
+        "SystemUIClocks-BigNum",
+        "SystemUIClocks-Calligraphy",
+        "SystemUIClocks-Flex",
+        "SystemUIClocks-Growth",
+        "SystemUIClocks-Inflate",
+        "SystemUIClocks-Metro",
+        "SystemUIClocks-NumOverlap",
+    ],
+    manifest: "debloat/AndroidManifest.xml",
+    resource_dirs: ["debloat/res"],
+    sdk_version: "current",
+    certificate: "platform",
+    system_ext_specific: true,
+    min_sdk_version: "30",
+}
