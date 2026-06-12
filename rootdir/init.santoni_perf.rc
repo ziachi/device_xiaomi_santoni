@@ -1,8 +1,18 @@
-# Santoni 2GB RAM Base Tuning + Spectrum Activation
-# V13: Default Balance (0), added memory tunables per profile
+# Santoni 2GB RAM Base Tuning + Luuvy Kernel Spectrum Profiles
+# V15: Replaced with Luuvy kernel profiles + our RAM tuning base
+
+on init
+    # ZRAM 2GB (Luuvy default)
+    exec u:r:init:s0 -- /system/bin/swapoff /dev/block/zram0
+    write /sys/block/zram0/reset 1
+    write /sys/block/zram0/disksize 2147483648
+    
+on post-fs
+    exec u:r:init:s0 -- /system/bin/mkswap /dev/block/zram0
+    exec u:r:init:s0 -- /system/bin/swapon /dev/block/zram0
 
 on property:sys.boot_completed=1
-    # Base VM tuning (Spectrum profiles will override these)
+    # Base VM tuning
     write /proc/sys/vm/swappiness 80
     write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 5
@@ -16,9 +26,130 @@ on property:sys.boot_completed=1
     # Disable readahead for zRAM
     write /sys/block/zram0/queue/read_ahead_kb 0
 
-    # V13: Default profile = Balance (0)
-    setprop persist.sys.spectrum.profile ""
-    setprop persist.sys.spectrum.profile 0
+    # Default profile = Balance (0)
+    setprop persist.spectrum.profile ""
+    setprop persist.spectrum.profile 0
 
 on early-init
-    setprop persist.sys.spectrum.kernel 1
+    setprop persist.spectrum.kernel 1
+
+# =============================================
+# Luuvy Kernel Profiles
+# =============================================
+
+# Balance (default)
+on property:persist.luuvy.profile=balance
+    # CPU Big cluster
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1401000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    # CPU Little cluster
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1094400
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 768000
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    # Governor
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor schedutil
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor schedutil
+    chmod 644 /sys/module/workqueue/parameters/power_efficient
+    write /sys/module/workqueue/parameters/power_efficient y
+    # GPU
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 475000000
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz 216
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
+    write /sys/kernel/gpu/gpu_min_clock 216
+    write /sys/kernel/gpu/gpu_max_clock 475
+
+# Performance
+on property:persist.luuvy.profile=performance
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1401000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1094400
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 768000
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor performance
+    chmod 644 /sys/module/workqueue/parameters/power_efficient
+    write /sys/module/workqueue/parameters/power_efficient N
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 475000000
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz 300
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor performance
+    write /sys/kernel/gpu/gpu_min_clock 300
+    write /sys/kernel/gpu/gpu_max_clock 475
+
+# Battery
+on property:persist.luuvy.profile=battery
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1401000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1094400
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 768000
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor powersave
+    chmod 644 /sys/module/workqueue/parameters/power_efficient
+    write /sys/module/workqueue/parameters/power_efficient Y
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 450000000
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz 216
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor powersave
+    write /sys/kernel/gpu/gpu_min_clock 216
+    write /sys/kernel/gpu/gpu_max_clock 450
+
+# Gaming
+on property:persist.luuvy.profile=gaming
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1401000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    chmod 444 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq 1094400
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 768000
+    chmod 444 /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor performance
+    chmod 644 /sys/module/workqueue/parameters/power_efficient
+    write /sys/module/workqueue/parameters/power_efficient N
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 475000000
+    write /sys/class/kgsl/kgsl-3d0/min_clock_mhz 375
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor msm-adreno-tz
+    write /sys/kernel/gpu/gpu_min_clock 375
+    write /sys/kernel/gpu/gpu_max_clock 475
+
+# =============================================
+# Spectrum Profile Bridges
+# =============================================
+# persist.spectrum.profile (from SpectrumTile QS) -> persist.luuvy.profile
+
+on property:persist.spectrum.profile=0
+    setprop persist.luuvy.profile balance
+
+on property:persist.spectrum.profile=1
+    setprop persist.luuvy.profile performance
+
+on property:persist.spectrum.profile=2
+    setprop persist.luuvy.profile battery
+
+on property:persist.spectrum.profile=3
+    setprop persist.luuvy.profile gaming
