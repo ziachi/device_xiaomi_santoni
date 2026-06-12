@@ -14,7 +14,7 @@ Optimized for 2GB RAM, SELinux enforcing, Vanilla only.
 | CPU | 4× A53 @1.4GHz + 4× A53 @1.2GHz |
 | GPU | Adreno 505 |
 | RAM | 2GB / 3GB |
-| Kernel | 4.9.227 (`santoni_treble_defconfig`) |
+| Kernel | 4.9.257 Luuvy-Checkmate-B.4.0 (prebuilt) |
 
 ## Repositories
 

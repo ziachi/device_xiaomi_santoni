@@ -112,3 +112,13 @@ Development Changelog
 #9   Maintainer overlay (cr_strings.xml)
 #10  DolbyProvider disable
 #11  Spectrum profiles (init.spectrum.rc, init.santoni_perf.rc)
+
+--- V15 ---
+#89  Remove GameSpace + Sidebar dead menu from Settings overlay
+#90  SELinux dontaudit libutils.so HAL denial (4 domains)
+#91  SELinux dontaudit system_app binder + netd/suspend_control
+#92  SELinux dontaudit SystemUI usb_uvc_enabled_prop
+#93  Update CHANGELOG.txt
+#94  Revert Spectrum property names for Luuvy kernel (persist.spectrum.*)
+#95  Inject Luuvy prebuilt kernel 4.9.257 (Checkmate-B.4.0.EOL)
+#96  Revert SpectrumTile property to persist.spectrum              [frameworks/base]
