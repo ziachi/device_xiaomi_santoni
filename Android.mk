@@ -37,3 +37,138 @@ $(DSP_MOUNT_POINT):
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MOUNT_POINT) $(DSP_MOUNT_POINT) $(PERSIST_MOUNT_POINT)
 
 endif
+
+# V12: Override bloat apps for 2GB RAM optimization
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := GameSpace_disable
+LOCAL_OVERRIDES_PACKAGES := GameSpace
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := LMOFreeform_disable
+LOCAL_OVERRIDES_PACKAGES := LMOFreeform
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := LMOFreeformSidebar_disable
+LOCAL_OVERRIDES_PACKAGES := LMOFreeformSidebar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := OmniJaws_disable
+LOCAL_OVERRIDES_PACKAGES := OmniJaws
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := OmniStyle_disable
+LOCAL_OVERRIDES_PACKAGES := OmniStyle
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := Seedvault_disable
+LOCAL_OVERRIDES_PACKAGES := Seedvault
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := DeviceDiagnostics_disable
+LOCAL_OVERRIDES_PACKAGES := DeviceDiagnostics
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := LiveWallpapersPicker_disable
+LOCAL_OVERRIDES_PACKAGES := LiveWallpapersPicker
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := WallpaperBackup_disable
+LOCAL_OVERRIDES_PACKAGES := WallpaperBackup
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ColumbusService_disable
+LOCAL_OVERRIDES_PACKAGES := ColumbusService
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := BatteryStatsViewer_disable
+LOCAL_OVERRIDES_PACKAGES := BatteryStatsViewer
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := LineageSetupWizard_disable
+LOCAL_OVERRIDES_PACKAGES := LineageSetupWizard
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := AvatarPicker_disable
+LOCAL_OVERRIDES_PACKAGES := AvatarPicker
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := Backgrounds_disable
+LOCAL_OVERRIDES_PACKAGES := Backgrounds
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := Twelve_disable
+LOCAL_OVERRIDES_PACKAGES := Twelve
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := MatLog_disable
+LOCAL_OVERRIDES_PACKAGES := MatLog
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := EasterEgg_disable
+LOCAL_OVERRIDES_PACKAGES := EasterEgg
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ThemePicker_disable
+LOCAL_OVERRIDES_PACKAGES := ThemePicker
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ThemesStub_disable
+LOCAL_OVERRIDES_PACKAGES := ThemesStub
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SRC_FILES := Android.mk
+include $(BUILD_PREBUILT)
