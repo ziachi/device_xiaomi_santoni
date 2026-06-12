@@ -29,3 +29,7 @@ allow vendor_init {
 
 # Allow vendor_init to write to /dev/blkio
 allow vendor_init blkio:file w_file_perms;
+
+# V14: Allow Spectrum profile switching to tune memory
+allow vendor_init proc_extra_free_kbytes:file { open write };
+allow vendor_init proc_drop_caches:file { open write };
