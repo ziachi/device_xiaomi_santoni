@@ -421,7 +421,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti \
+    android.hardware.power-service.example \
     android.hardware.power@1.2.vendor \
     android.hardware.power@1.3.vendor
 
@@ -605,8 +605,8 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-im
 # ========================
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=128m \
-    dalvik.vm.heapsize=256m \
+    dalvik.vm.heapgrowthlimit=192m \
+    dalvik.vm.heapsize=384m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
@@ -734,15 +734,28 @@ PRODUCT_COPY_FILES += \
 # Remove unnecessary apps to reduce RAM usage and storage
 # on 2GB device with external GApps (NikGapps)
 # =========================================
-PRODUCT_PACKAGES_REMOVE += \
-    GameSpace \
-    LMOFreeform \
-    LMOFreeformSidebar \
-    OmniJaws \
-    OmniStyle \
-    Seedvault \
-    DeviceDiagnostics \
-    LiveWallpapersPicker \
-    WallpaperBackup
 
 # =========================================
+
+
+# V12: Debloat — override apps for 2GB RAM (via LOCAL_OVERRIDES_PACKAGES)
+PRODUCT_PACKAGES += \
+    GameSpace_disable \
+    LMOFreeform_disable \
+    LMOFreeformSidebar_disable \
+    OmniJaws_disable \
+    OmniStyle_disable \
+    Seedvault_disable \
+    DeviceDiagnostics_disable \
+    LiveWallpapersPicker_disable \
+    WallpaperBackup_disable \
+    ColumbusService_disable \
+    BatteryStatsViewer_disable \
+    LineageSetupWizard_disable \
+    AvatarPicker_disable \
+    Backgrounds_disable \
+    Twelve_disable \
+    MatLog_disable \
+    EasterEgg_disable \
+    ThemePicker_disable \
+    ThemesStub_disable
