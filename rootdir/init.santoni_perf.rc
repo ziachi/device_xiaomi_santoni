@@ -3,7 +3,7 @@
 
 on property:sys.boot_completed=1
     # Base VM tuning (Spectrum profiles will override these)
-    write /proc/sys/vm/swappiness 60
+    write /proc/sys/vm/swappiness 80
     write /proc/sys/vm/dirty_ratio 15
     write /proc/sys/vm/dirty_background_ratio 5
     write /proc/sys/vm/vfs_cache_pressure 80
@@ -17,9 +17,9 @@ on property:sys.boot_completed=1
 
     # v4: Force Spectrum profile activation
     # Clear profile first to ensure property change triggers the on-property handler
-    setprop persist.spectrum.profile ""
+    setprop persist.sys.spectrum.profile ""
     # Small delay not available in init, but setting to "" then "0" triggers the handler
-    setprop persist.spectrum.profile 0
+    setprop persist.sys.spectrum.profile 1
 
 on early-init
     # v4: Enable Spectrum kernel support early

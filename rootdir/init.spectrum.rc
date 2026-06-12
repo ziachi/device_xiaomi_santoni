@@ -54,7 +54,7 @@ on property:persist.sys.spectrum.profile=0
     write /sys/block/mmcblk0/queue/read_ahead_kb 128
 
     # VM tuning
-    write /proc/sys/vm/swappiness 60
+    write /proc/sys/vm/swappiness 80
     write /proc/sys/vm/dirty_ratio 10
     write /proc/sys/vm/dirty_background_ratio 5
     write /proc/sys/vm/vfs_cache_pressure 50
@@ -97,7 +97,7 @@ on property:persist.sys.spectrum.profile=1
     write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 512
 
-    write /proc/sys/vm/swappiness 40
+    write /proc/sys/vm/swappiness 60
     write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 10
     write /proc/sys/vm/vfs_cache_pressure 60
@@ -142,7 +142,7 @@ on property:persist.sys.spectrum.profile=2
     write /sys/block/mmcblk0/queue/read_ahead_kb 64
 
     # VM - aggressive swap/writeback for memory efficiency
-    write /proc/sys/vm/swappiness 80
+    write /proc/sys/vm/swappiness 100
     write /proc/sys/vm/dirty_ratio 5
     write /proc/sys/vm/dirty_background_ratio 3
     write /proc/sys/vm/vfs_cache_pressure 80
@@ -178,7 +178,7 @@ on property:persist.sys.spectrum.profile=3
     write /sys/block/mmcblk0/queue/read_ahead_kb 1024
 
     # VM - less swappiness, keep game in RAM
-    write /proc/sys/vm/swappiness 20
+    write /proc/sys/vm/swappiness 40
     write /proc/sys/vm/dirty_ratio 30
     write /proc/sys/vm/dirty_background_ratio 15
     write /proc/sys/vm/vfs_cache_pressure 30
