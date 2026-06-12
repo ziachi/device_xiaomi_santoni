@@ -146,12 +146,8 @@ ro.hw_timeout_multiplier=6
 ro.lmk.log_stats=true
 ro.lmk.low=1001
 ro.lmk.medium=800
-ro.lmk.critical=0
-ro.lmk.critical_upgrade=false
-ro.lmk.upgrade_pressure=100
 ro.lmk.downgrade_pressure=100
 ro.lmk.kill_heaviest_task=true
-ro.lmk.kill_timeout_ms=50
 ro.lmk.use_minfree_levels=true
 
 # Logs
@@ -170,7 +166,6 @@ ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.perf.scroll_opt=true
 # v5 Fix #25: Aggressive GMS/background memory limits for 2GB RAM
 # These override system.prop values (vendor.prop loads later)
-ro.vendor.qti.sys.fw.bg_apps_limit=16
 ro.vendor.qti.sys.fw.bservice_enable=true
 ro.vendor.qti.sys.fw.bservice_age=5000
 ro.vendor.qti.sys.fw.bservice_limit=3

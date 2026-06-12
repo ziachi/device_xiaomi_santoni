@@ -601,33 +601,47 @@ PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
 
 # ========================
-# 2GB RAM Optimization
+# V13: 2GB RAM Optimization (tuned for Shopee/light games)
 # ========================
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=192m \
-    dalvik.vm.heapsize=384m \
+    dalvik.vm.heapgrowthlimit=144m \
+    dalvik.vm.heapsize=256m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
-# Low Memory Killer
+# Low Memory Killer — aggressive for 2GB
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.low=1001 \
     ro.lmk.medium=800 \
-    ro.lmk.critical=0 \
-    ro.lmk.critical_upgrade=false \
-    ro.lmk.upgrade_pressure=100 \
+    ro.lmk.critical=300 \
+    ro.lmk.critical_upgrade=true \
+    ro.lmk.upgrade_pressure=60 \
     ro.lmk.downgrade_pressure=100 \
     ro.lmk.kill_heaviest_task=true \
-    ro.lmk.kill_timeout_ms=50 \
-    ro.lmk.use_minfree_levels=true
-
+    ro.lmk.kill_timeout_ms=150 \
+    ro.lmk.use_minfree_levels=true \
     ro.lmk.thrashing_limit=30 \
     ro.lmk.thrashing_limit_decay=50 \
     ro.lmk.swap_free_low_percentage=20 \
     ro.lmk.psi_partial_stall_ms=200 \
-    ro.lmk.psi_complete_stall_ms=700 \
+    ro.lmk.psi_complete_stall_ms=700
+
+# HWUI cache — reduced for 2GB RAM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.texture_cache_size=24 \
+    ro.hwui.layer_cache_size=16 \
+    ro.hwui.path_cache_size=4 \
+    ro.hwui.gradient_cache_size=0.5
+
+# Background process limits
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.fw.bg_apps_limit=4 \
+    ro.vendor.qti.sys.fw.bg_apps_limit=4 \
+    persist.sys.fw.bg_apps_limit=4 \
+    config_max_cached_processes=6 \
+    persist.sys.purgeable_assets=1
 
 # zRAM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -729,33 +743,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.fingerprint_detect.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint_detect.sh
 
-# =========================================
-# V11: Bloat removal for 2GB RAM + GApps
-# Remove unnecessary apps to reduce RAM usage and storage
-# on 2GB device with external GApps (NikGapps)
-# =========================================
 
-# =========================================
-
-
-# V12: Debloat — override apps for 2GB RAM (via LOCAL_OVERRIDES_PACKAGES)
-PRODUCT_PACKAGES += \
-    GameSpace_disable \
-    LMOFreeform_disable \
-    LMOFreeformSidebar_disable \
-    OmniJaws_disable \
-    OmniStyle_disable \
-    Seedvault_disable \
-    DeviceDiagnostics_disable \
-    LiveWallpapersPicker_disable \
-    WallpaperBackup_disable \
-    ColumbusService_disable \
-    BatteryStatsViewer_disable \
-    LineageSetupWizard_disable \
-    AvatarPicker_disable \
-    Backgrounds_disable \
-    Twelve_disable \
-    MatLog_disable \
-    EasterEgg_disable \
-    ThemePicker_disable \
-    ThemesStub_disable
+# V13: Debloat — real stub app with overrides (29 apps, ~350MB freed)
+# Uses android_app + overrides in Android.bp (BUILD_PHONY_PACKAGE doesn't work)
+PRODUCT_PACKAGES += SantoniDebloat
