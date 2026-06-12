@@ -58,7 +58,6 @@ android_app {
         "WallpaperBackup",
         "ColumbusService",
         "BatteryStatsViewer",
-        "LineageSetupWizard",
         "AvatarPicker",
         "Backgrounds",
         "Twelve",
