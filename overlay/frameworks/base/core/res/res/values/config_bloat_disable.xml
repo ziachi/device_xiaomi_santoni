@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- V12: Disable bloat services for 2GB RAM optimization -->
+<resources>
+    <!-- Disable smart storage manager -->
+    <bool name="config_smart_storage_enabled">false</bool>
+</resources>
