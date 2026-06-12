@@ -116,7 +116,7 @@ See [CHANGELOG.txt](CHANGELOG.txt) for full development history.
 - [androidsantoni](https://github.com/androidsantoni) — device tree, vendor, kernel base
 - [omansh-krishn](https://github.com/omansh-krishn) — keeping the source alive
 - [LineageOS](https://github.com/LineageOS) — original santoni device tree & kernel
-- [ProjectMatrixx / AnierinBliss](https://github.com/AnierinBliss/matrixx_android) — ROM base
+- [ProjectMatrixx](https://github.com/Matrixx-Devices) — ROM base
 
 ## Maintainer
 
