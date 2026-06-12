@@ -22,3 +22,6 @@ allow platform_app sysfs_kgsl:file { getattr open read };
 # Required for SpectrumTile QS tile (persist.sys.spectrum.profile)
 set_prop(platform_app, system_prop)
 get_prop(platform_app, system_prop)
+
+# V15: Suppress SystemUI reading usb_uvc_enabled_prop (no UVC support on santoni)
+dontaudit platform_app usb_uvc_enabled_prop:file read;
