@@ -19,3 +19,7 @@ binder_call(gmscore_app, hal_gnss_default);
 
 # Network access for microG services
 allow gmscore_app self:udp_socket { create connect };
+
+
+# V12: Suppress GMS adbd property read denials (private types, can't allow from vendor)
+dontaudit gmscore_app property_type:file read;
