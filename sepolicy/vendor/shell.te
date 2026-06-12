@@ -11,5 +11,7 @@ get_prop(shell, device_config_runtime_native_boot_prop)
 # Fix shell SELinux denials (adb debugging)
 get_prop(shell, qemu_sf_lcd_density_prop)
 get_prop(shell, baseband_prop)
-allow shell idmap_exec:file { execute read open getattr };
+allow shell idmap_exec:file { execute execute_no_trans read open getattr map };
 allow shell fs_bpf:dir search;
+dontaudit shell bpffs_type:dir search;
+dontaudit shell bpffs_type:file { read };

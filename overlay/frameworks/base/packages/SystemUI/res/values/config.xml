@@ -29,4 +29,8 @@
     <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
     <integer name="config_screenRecorderMaxFramerate">60</integer>
 
+
+    <!-- V13: Disable QuickAccessWallet (21x errors, NFC not present) -->
+    <bool name="config_quickAccessWalletEnabled">false</bool>
+
 </resources>
