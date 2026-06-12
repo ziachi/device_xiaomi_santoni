@@ -1,6 +1,6 @@
 # Spectrum Kernel Manager Profiles
 # Optimized for Xiaomi Redmi 4X (santoni) MSM8937 - 2GB RAM
-# v4: Added governor fallback + verification writes
+# V13: Added memory tunables per profile, default Balance
 #
 # CPU Cluster 0 (big, cpu0-3): 960-1497 MHz
 # CPU Cluster 1 (little, cpu4-7): 768-1209 MHz
@@ -53,16 +53,16 @@ on property:persist.sys.spectrum.profile=0
     write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 128
 
-    # VM tuning
+    # VM tuning — balanced
     write /proc/sys/vm/swappiness 80
-    write /proc/sys/vm/dirty_ratio 10
+    write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 5
-    write /proc/sys/vm/vfs_cache_pressure 50
+    write /proc/sys/vm/vfs_cache_pressure 100
+    write /proc/sys/vm/extra_free_kbytes 24300
 
     # LPM - enable power saving
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
 
-    # v4: Log profile activation
     setprop persist.sys.spectrum.active 0
 
 # Profile 1: Performance - snappy UI, max responsiveness
@@ -97,10 +97,12 @@ on property:persist.sys.spectrum.profile=1
     write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 512
 
+    # VM tuning — keep more in RAM, less aggressive reclaim
     write /proc/sys/vm/swappiness 60
-    write /proc/sys/vm/dirty_ratio 20
+    write /proc/sys/vm/dirty_ratio 30
     write /proc/sys/vm/dirty_background_ratio 10
-    write /proc/sys/vm/vfs_cache_pressure 60
+    write /proc/sys/vm/vfs_cache_pressure 50
+    write /proc/sys/vm/extra_free_kbytes 12150
 
     write /sys/module/lpm_levels/parameters/sleep_disabled 1
 
@@ -141,11 +143,12 @@ on property:persist.sys.spectrum.profile=2
     write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 64
 
-    # VM - aggressive swap/writeback for memory efficiency
+    # VM - aggressive writeback for memory efficiency, flush cache
     write /proc/sys/vm/swappiness 100
-    write /proc/sys/vm/dirty_ratio 5
+    write /proc/sys/vm/dirty_ratio 10
     write /proc/sys/vm/dirty_background_ratio 3
-    write /proc/sys/vm/vfs_cache_pressure 80
+    write /proc/sys/vm/vfs_cache_pressure 200
+    write /proc/sys/vm/extra_free_kbytes 36450
 
     # LPM - enable deepest sleep
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
@@ -177,11 +180,12 @@ on property:persist.sys.spectrum.profile=3
     write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 1024
 
-    # VM - less swappiness, keep game in RAM
+    # VM - minimize swapping, keep game in RAM, max cache retention
     write /proc/sys/vm/swappiness 40
-    write /proc/sys/vm/dirty_ratio 30
+    write /proc/sys/vm/dirty_ratio 40
     write /proc/sys/vm/dirty_background_ratio 15
     write /proc/sys/vm/vfs_cache_pressure 30
+    write /proc/sys/vm/extra_free_kbytes 6075
 
     # LPM - no deep sleep during gaming
     write /sys/module/lpm_levels/parameters/sleep_disabled 1

@@ -1,12 +1,13 @@
 # Santoni 2GB RAM Base Tuning + Spectrum Activation
-# v4: Fixed Spectrum activation — clear then set to ensure trigger fires
+# V13: Default Balance (0), added memory tunables per profile
 
 on property:sys.boot_completed=1
     # Base VM tuning (Spectrum profiles will override these)
     write /proc/sys/vm/swappiness 80
-    write /proc/sys/vm/dirty_ratio 15
+    write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 5
-    write /proc/sys/vm/vfs_cache_pressure 80
+    write /proc/sys/vm/vfs_cache_pressure 100
+    write /proc/sys/vm/extra_free_kbytes 24300
 
     # Default I/O scheduler
     write /sys/block/mmcblk0/queue/scheduler bfq
@@ -15,12 +16,9 @@ on property:sys.boot_completed=1
     # Disable readahead for zRAM
     write /sys/block/zram0/queue/read_ahead_kb 0
 
-    # v4: Force Spectrum profile activation
-    # Clear profile first to ensure property change triggers the on-property handler
+    # V13: Default profile = Balance (0)
     setprop persist.sys.spectrum.profile ""
-    # Small delay not available in init, but setting to "" then "0" triggers the handler
-    setprop persist.sys.spectrum.profile 1
+    setprop persist.sys.spectrum.profile 0
 
 on early-init
-    # v4: Enable Spectrum kernel support early
     setprop persist.spectrum.kernel 1
