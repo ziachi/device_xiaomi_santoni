@@ -1,3 +1,10 @@
 # Apps are no longer allowed open access to /dev/ashmem, unless they
 # target API level < Q.
 dontaudit untrusted_app ashmem_device:chr_file open;
+
+# V15: Suppress libutils.so denial from HAL domains reading same_process_hal_file
+# These read attempts are harmless — fallback paths work fine without access
+dontaudit credstore same_process_hal_file:file read;
+dontaudit drmserver same_process_hal_file:file read;
+dontaudit keystore same_process_hal_file:file read;
+dontaudit gatekeeperd same_process_hal_file:file read;
