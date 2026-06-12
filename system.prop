@@ -192,7 +192,7 @@ persist.device_config.configuration.disable_server_configurable_flags_reset=true
 
 # Spectrum Kernel Manager
 persist.spectrum.kernel=1
-persist.spectrum.profile=0
+persist.spectrum.profile=1
 
 # v4 Fix #14: Disable Settings Intelligence (5K spam lines, CPU waste)
 persist.log.tag.SettingsIntelligence=S
@@ -232,12 +232,12 @@ persist.log.tag.BluetoothPowerStatsCollector=S
 # More aggressive LMK for 2GB + GApps
 ro.lmk.low=1001
 ro.lmk.medium=800
-ro.lmk.critical=0
+ro.lmk.critical=200
 ro.lmk.critical_upgrade=false
 ro.lmk.upgrade_pressure=100
 ro.lmk.downgrade_pressure=100
 ro.lmk.kill_heaviest_task=true
-ro.lmk.kill_timeout_ms=100
+ro.lmk.kill_timeout_ms=300
 ro.lmk.use_minfree_levels=true
 
 # Limit GMS background services (reduce ANR cascade)
@@ -311,3 +311,24 @@ ro.launcher.live_wallpaper=0
 persist.device_config.gservices_android.enabled=false
 # Disable ambient display (saves background sensor polling)
 ro.config.always_show_time=false
+
+# V12: Suppress known harmless log spam
+persist.log.tag.RkpdWidevine=S
+persist.log.tag.TaskbarDelegate=S
+persist.log.tag.hwservicemanager=S
+
+# V12: Disable Android bloat background services (~75MB RAM saved)
+# Google Ads tracking - not needed
+ro.com.google.gms.adservices.enable=false
+
+# Google federated ML training - not needed
+ro.com.google.gms.federatedcompute.enable=false
+
+# Google on-device personalization (ads) - not needed  
+ro.com.google.gms.ondevicepersonalization.enable=false
+
+# Android Enterprise device lock - not needed for personal device
+ro.com.google.gms.devicelockcontroller.enable=false
+
+# Disable auto-sync by default (user can enable per-account)
+ro.config.sync=no
