@@ -2,6 +2,12 @@ Matrixx 15 (Android 15) — Xiaomi Redmi 4X (santoni)
 Development Changelog
 =====================
 
+--- V15 ---
+#89  Overlay: remove GameSpace + Sidebar dead menu entries from Settings
+#90  SELinux: dontaudit libutils.so denial (credstore/drmserver/keystore/gatekeeperd)
+#91  SELinux: dontaudit system_app binder (netd + suspend_control services)
+#92  SELinux: dontaudit platform_app usb_uvc_enabled_prop
+
 --- V14 ---
 #83  Remove LineageSetupWizard from debloat (fix Settings "not provisioned")
 #84  Spectrum property alignment (persist.spectrum.* → persist.sys.spectrum.*)
