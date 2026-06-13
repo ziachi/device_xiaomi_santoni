@@ -141,6 +141,30 @@ to manage root permissions.
 | 2 Battery | conservative | 1.0/0.9 GHz | 375 MHz | Max battery life |
 | 3 Gaming | performance | 1.5/1.2 GHz | 450 MHz | Locked max clocks |
 
+## Known Issues
+
+### Freezer (cgroup v2) Leak
+
+Android 15 expects the kernel to support cgroup v2 freezer for caching
+background apps. Santoni's kernel (4.9.x) only supports cgroup v1 —
+there is no way to provide a real cgroup v2 freezer on this kernel.
+
+**What we did:**
+- Hardcoded `mUseFreezer = false` in `CachedAppOptimizer.java`
+- Forced `Freezer.isFreezerSupported()` to return `false`
+- Set `persist.sys.fw.cache_app_freezer=disabled`
+
+**What still happens:**
+Despite disabling the core freezer paths, some Android 15 framework
+components still attempt to invoke freezer-related calls (e.g.
+`Process.setProcessFrozen()`). This causes harmless but noisy logcat
+spam from several subsystems. The leak is cosmetic — apps are not
+actually frozen and the device runs fine — but the log noise cannot
+be fully eliminated without kernel 5.2+ cgroup v2 support.
+
+> **Bottom line:** The freezer spam is a known trade-off of running
+> Android 15 on a kernel 4.9 device. It does not affect functionality.
+
 ## Troubleshooting
 
 | Problem | Fix |
