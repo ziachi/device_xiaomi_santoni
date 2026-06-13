@@ -98,8 +98,10 @@ mka bacon
 - **Low-RAM tuning** — aggressive LMK, reduced heap, zRAM, background limits
 - **SELinux Enforcing** — targeted vendor policies, no permissive
 - **Play Integrity** — passed by default, with built-in spoofing via Matrixx Override
+- **USB Debugging** — enabled out of the box for screenless ADB access
+- **KernelSU (KSU)** — prebuilt into the kernel, root ready from first boot
 
-### Play Integrity
+### Play Integrity & Matrixx Override
 
 Play Integrity passes out of the box. The ROM includes a built-in feature
 called **Matrixx Override** (found in Settings → Miscellaneous) that handles
@@ -108,6 +110,27 @@ device spoofing automatically.
 If your fingerprint or keybox gets flagged/failed, you can easily replace
 them through the Matrixx Override settings — no additional modules or
 Magisk/KSU tweaks needed.
+
+**Other Matrixx Override features:**
+- Hide app list from detection
+- Device spoofing (model, fingerprint, keybox)
+- And more — check Settings → Miscellaneous
+
+### USB Debugging
+
+USB Debugging (ADB) is *enabled by default* — you can connect and debug
+the device entirely via ADB without needing to touch the screen at all.
+This is useful for headless debugging, flashing, or recovery scenarios.
+
+> ⚠️ **Security note:** You may want to disable USB Debugging manually
+> after setup (Settings → Developer Options → USB Debugging) if the device
+> will be used daily.
+
+### KernelSU
+
+KernelSU (KSU) is prebuilt into the Luuvy kernel — root access is available
+from first boot. Install the [KowSU Manager APK](https://github.com/nicoway/KowSU/releases)
+to manage root permissions.
 
 ### Spectrum Profiles
 
