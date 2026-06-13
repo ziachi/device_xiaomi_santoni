@@ -32,3 +32,4 @@ dontaudit system_app netd:binder call;
 # service_manager find for suspend_control — harmless, power info query
 dontaudit system_app system_suspend_control_service:service_manager find;
 dontaudit system_app system_suspend_control_internal_service:service_manager find;
+
