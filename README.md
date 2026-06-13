@@ -107,9 +107,24 @@ mka bacon
 
 [GitHub Releases](https://github.com/ziachi/device_xiaomi_santoni/releases)
 
-## Changelog
+## Documentation
 
-See [CHANGELOG.txt](CHANGELOG.txt) for full development history.
+| Doc | Description |
+|-----|-------------|
+| [CHANGELOG.md](CHANGELOG.md) | Full development history (V3-V16+) |
+| [dontauditlist.txt](dontauditlist.txt) | SELinux dontaudit rule registry |
+| [docs/bug-analysis/](docs/bug-analysis/) | Detailed root cause analysis |
+
+### Bug Analysis
+
+| File | Topic |
+|------|-------|
+| [freezer.md](docs/bug-analysis/freezer.md) | Cached app freezer - cgroup v2 vs kernel 4.9 |
+| [selinux.md](docs/bug-analysis/selinux.md) | SELinux dontaudit policy - private vs public types |
+| [ram-optimization.md](docs/bug-analysis/ram-optimization.md) | ZRAM/LMK/heap/debloat tuning for 2GB |
+| [spectrum.md](docs/bug-analysis/spectrum.md) | Kernel profile switcher + property mapping |
+| [debloat.md](docs/bug-analysis/debloat.md) | Debloat strategy - what worked, what didn't |
+| [luuvy-kernel.md](docs/bug-analysis/luuvy-kernel.md) | Prebuilt kernel integration |
 
 ## Credits
 
