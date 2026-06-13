@@ -1,6 +1,8 @@
 # Matrixx 15 (Android 15) — Xiaomi Redmi 4X (santoni)
 
-> ✅ **The ROM is ready for daily use** — you can flash and use it right now.
+> ✅ **The ROM is ready for daily use** — check the
+> [Releases](https://github.com/ziachi/device_xiaomi_santoni/releases)
+> page for downloads. V18 (recommended) and V17 are available.
 >
 > ⚠️ **Project Status: Likely Discontinued (Developer's Note)**
 >
