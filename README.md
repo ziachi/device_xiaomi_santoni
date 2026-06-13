@@ -123,6 +123,14 @@ Magisk/KSU tweaks needed.
 Google hardware attestation root certificate is valid, and the bootloader
 appears as locked. This means Play Integrity strong/device level passes.
 
+<p align="center">
+  <img src="screenshots/key_attestation_tee.png" alt="TEE Attestation — KeyMint 1.0, TrustedEnvironment security level" width="300"/>
+</p>
+
+Attestation and Keymaster/KeyMint are spoofed to hardware level (KeyMint 1.0,
+Security level: TrustedEnvironment). This ensures apps that check TEE-level
+attestation will pass.
+
 **Other Matrixx Override features:**
 - Hide app list from detection
 - Device spoofing (model, fingerprint, keybox)
