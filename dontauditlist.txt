@@ -1,0 +1,134 @@
+================================================================================
+                     DONTAUDIT LIST — Matrixx 15 Santoni
+                     All SELinux dontaudit rules in device tree
+================================================================================
+
+Format: [Version] file → rule | reason
+
+================================================================================
+ INITIAL (V3 — device tree base)
+================================================================================
+
+[V3] traced_probes.te
+  → dontaudit traced_probes debugfs_tracing_debug:file read;
+  | traced_probes tries to read debug tracing files
+
+[V3] gx_fpd.te
+  → dontaudit gx_fpd storage_file:dir search;
+  → dontaudit gx_fpd default_prop:file read;
+  | Goodix fingerprint daemon probes storage and default props
+
+[V3] dontaudit.te
+  → dontaudit untrusted_app ashmem_device:chr_file open;
+  | Legacy apps try to open ashmem device directly
+
+[V3] gmscore_app.te
+  → dontaudit gmscore_app adsprpcd_file:filesystem getattr;
+  → dontaudit gmscore_app firmware_file:filesystem getattr;
+  → dontaudit gmscore_app traced_producer_socket:sock_file getattr;
+  | GMS probes ADSP, firmware, and traced socket — harmless
+
+[V3] untrusted_app_27.te
+  → dontaudit untrusted_app_27 proc_vmstat:file { getattr open };
+  | API 27 apps probe /proc/vmstat for memory info
+
+[V3] untrusted_app_29.te
+  → dontaudit untrusted_app_29 hal_memtrack_hwservice:hwservice_manager { find };
+  | API 29 apps probe memtrack HAL service
+
+[V3] untrusted_app.te
+  → dontaudit untrusted_app virtual_ab_prop:file read;
+  | Untrusted apps probe virtual A/B property
+
+[V3] hal_sensors_default.te
+  → dontaudit hal_sensors_default default_prop:file read;
+  | Sensors HAL reads default properties
+
+[V3] hal_fingerprint_default.te
+  → dontaudit hal_fingerprint_default default_android_vndservice:service_manager find;
+  → dontaudit hal_fingerprint_default default_prop:file read;
+  | Fingerprint HAL probes vendor services and default props
+
+[V3] domain.te
+  → dontaudit domain device:file w_file_perms;
+  | Global: suppress device file write attempts
+
+[V3] qti_init_shell.te
+  → dontaudit qti_init_shell self:capability { dac_override };
+  | QTI init shell capability probe
+
+[V3] wcnss_service.te
+  → dontaudit wcnss_service serialno_prop:file { read getattr open };
+  | WCNSS WiFi service reads serial number prop
+
+[V3] hal_camera_default.te
+  → dontaudit hal_camera_default default_prop:file read;
+  | Camera HAL reads default properties
+
+[V3] fsck.te
+  → dontaudit fsck self:capability { dac_override dac_read_search };
+  | Filesystem check capability probes
+
+[V3] mm-qcamerad.te
+  → dontaudit mm-qcamerad property_socket:sock_file write;
+  → dontaudit mm-qcamerad default_prop:file read;
+  | Camera daemon probes property socket and default props
+
+================================================================================
+ V12 — GMS Property Suppression (#74)
+================================================================================
+
+[V12] gmscore_app.te
+  → dontaudit gmscore_app property_type:file read;
+  | GMS reads all property types — suppress blanket denial
+
+================================================================================
+ V13 — bpffs + idmap2 SEPolicy (#80)
+================================================================================
+
+[V13] shell.te
+  → dontaudit shell bpffs_type:dir search;
+  → dontaudit shell bpffs_type:file { read };
+  | Shell probes BPF filesystem — neverallow blocks allow
+
+================================================================================
+ V15 — HAL + System App + SystemUI (#90-#92)
+================================================================================
+
+[V15] dontaudit.te (#90)
+  → dontaudit credstore same_process_hal_file:file read;
+  → dontaudit drmserver same_process_hal_file:file read;
+  → dontaudit keystore same_process_hal_file:file read;
+  → dontaudit gatekeeperd same_process_hal_file:file read;
+  | libutils.so HAL binding — harmless library probe
+
+[V15] system_app.te (#91)
+  → dontaudit system_app netd:binder call;
+  → dontaudit system_app system_suspend_control_service:service_manager find;
+  → dontaudit system_app system_suspend_control_internal_service:service_manager find;
+  | System apps probe netd binder + suspend control services
+
+[V15] platform_app.te (#92)
+  → dontaudit platform_app usb_uvc_enabled_prop:file read;
+  | SystemUI probes UVC camera prop
+
+================================================================================
+ V16 — Freezer + Service Probes (PENDING)
+================================================================================
+
+[V16] system_app.te
+  → # SKIPPED: tracingproxy_service is private type, cannot dontaudit from vendor policy
+  | System app probes tracing proxy service (4× in logcat)
+
+[V16] mediaprovider.te (NEW)
+  → dontaudit mediaprovider radio_service:service_manager find;
+  | MediaProvider probes telephony radio service (6× in logcat)
+
+[V16] hal_camera_default.te
+  → dontaudit hal_camera_default hal_graphics_allocator_service:service_manager find;
+  | Camera HAL probes graphics allocator service (1× in logcat)
+
+================================================================================
+ TOTAL: 33 dontaudit rules across 17 files
+ Kernel: SELinux Enforcing — all rules suppress harmless denials only
+================================================================================
