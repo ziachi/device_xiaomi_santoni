@@ -110,9 +110,21 @@ Play Integrity passes out of the box. The ROM includes a built-in feature
 called **Matrixx Override** (found in Settings → Miscellaneous) that handles
 device spoofing automatically.
 
-If your fingerprint or keybox gets flagged/failed, you can easily replace
-them through the Matrixx Override settings — no additional modules or
-Magisk/KSU tweaks needed.
+<p align="center">
+  <img src="screenshots/play_integrity.png" alt="Play Integrity — BASIC ✅ DEVICE ✅ STRONG ❌" width="300"/>
+</p>
+
+| Verdict | Status |
+|---------|--------|
+| MEETS_BASIC_INTEGRITY | ✅ Pass |
+| MEETS_DEVICE_INTEGRITY | ✅ Pass |
+| MEETS_STRONG_INTEGRITY | ❌ Fail (expected — no real hardware attestation) |
+
+If your device integrity starts failing, you need a new *keybox*.
+You can find working keyboxes from Telegram forums or extract one from
+other devices you own. Replace it through Matrixx Override settings
+(Settings → Miscellaneous) — no additional modules or Magisk/KSU tweaks
+needed.
 
 **Key Attestation:**
 
