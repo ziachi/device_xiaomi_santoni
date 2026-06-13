@@ -169,11 +169,12 @@
         <transport>hwbinder</transport>
         <fqname>@1.0::IMwqemAdapter/MwqemAdapter</fqname>
     </hal>
-    <hal format="hidl">
+    <!-- Perf HAL disabled: service not running, Spectrum manages CPU profiles -->
+    <!-- <hal format="hidl">
         <name>vendor.qti.hardware.perf</name>
         <transport>hwbinder</transport>
         <fqname>@2.1::IPerf/default</fqname>
-    </hal>
+    </hal> -->
     <!-- Data Link Latency -->
     <hal format="hidl">
         <name>vendor.qti.hardware.data.latency</name>
