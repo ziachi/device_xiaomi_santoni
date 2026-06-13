@@ -2,6 +2,26 @@
 
 ## Development Changelog
 
+
+## V20 — Maximum Freezer Kill (3-Layer) + DEXopt Fix (2026-06-13)
+
+| # | Fix | File(s) |
+|---|-----|---------|
+| 110 | Hardcode disable setProcessFrozen at Process.java level (block ALL freeze callers) | Process.java *(frameworks/base)* |
+| 111 | Disable LMKD cgroup freezer (ro.lmk.use_cgroup_freezer=false) | system.prop |
+| 111 | Revert pm.dexopt.install to speed-profile (fix Play Store frozen 2.5min) | system.prop |
+| 111 | Revert pm.dexopt.first-boot to verify (faster first boot) | system.prop |
+
+## V19 — Aggressive DEXopt + Perf HAL Cleanup (2026-06-13)
+
+| # | Fix | File(s) |
+|---|-----|---------|
+| 107 | Full freezer no-op in Freezer.java (setProcessFrozen + freezeBinder) | Freezer.java *(frameworks/base)* |
+| 108 | Aggressive dexopt settings + remove perf HAL manifest | system.prop, manifest.xml |
+| 109 | Update CHANGELOG + freezer docs | CHANGELOG.md, docs/ |
+
+---
+
 ---
 
 ### V16
