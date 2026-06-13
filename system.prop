@@ -329,3 +329,6 @@ ro.com.google.gms.devicelockcontroller.enable=false
 
 # Disable auto-sync by default (user can enable per-account)
 ro.config.sync=no
+
+# V16: Disable cached app freezer — kernel 4.9 no cgroup v2 freezer support
+persist.device_config.activity_manager_native_boot.use_freezer=false
