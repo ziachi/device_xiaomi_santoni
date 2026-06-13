@@ -4,6 +4,21 @@
 > [Releases](https://github.com/ziachi/device_xiaomi_santoni/releases)
 > page for downloads. V18 (recommended) and V17 are available.
 >
+> Tested with real daily apps:
+> - **Shopee** — RAM management stress test (heavy app, smooth on 2GB)
+> - **Telegram** — background notification test (notifications arrive reliably)
+> - **WhatsApp** — notification + custom ROM detection check (no blocking, fully functional)
+> - **UI & Scrolling** — smoother and more responsive compared to other Android 15 ROMs available for santoni, even on the 2GB/16GB variant
+>
+> This ROM is based on *kernel 4.9* (Luuvy kernel with KernelSU).
+>
+> **Recommended Recovery:**
+> [OrangeFox R11.1_5 for santoni](https://sourceforge.net/projects/jabiyeff-build/files/Recovery/OrangeFox-R11.1_5-santoni-27.02.22.zip/download)
+>
+> However, from a developer's perspective, the ROM quality is still not
+> satisfying — there are known limitations due to aging hardware (2GB RAM,
+> kernel 4.9) that cannot be fully resolved.
+>
 > ⚠️ **Project Status: Likely Discontinued (Developer's Note)**
 >
 > From a developer's perspective, the result is not satisfying.
