@@ -48,7 +48,7 @@ on boot
     chmod 0644 /dev/goodix_fp
 
     setprop persist.sys.fp.vendor none
-#    start vendor.gx_fpd  # DISABLED: sensor not present, crash loop
+    start vendor.gx_fpd
 
 on property:persist.sys.fp.vendor=switchf
     stop vendor.gx_fpd

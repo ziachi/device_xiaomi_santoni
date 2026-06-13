@@ -325,5 +325,3 @@ ro.config.sync=no
 # V16: Disable game default frame rate — santoni max 60fps
 debug.graphics.game_default_frame_rate.disabled=1
 
-# V16: Disable cached app freezer — kernel 4.9 no cgroup v2 freezer support
-persist.device_config.activity_manager_native_boot.use_freezer=false
