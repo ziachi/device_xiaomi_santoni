@@ -1,7 +1,22 @@
 # Matrixx 15 (Android 15) — Xiaomi Redmi 4X (santoni)
 
+> ⚠️ **Project Status: Likely Discontinued**
+>
+> This project may no longer be actively maintained.
+> The Redmi 4X's hardware limitations — 2/3GB RAM, Snapdragon 430 (MSM8937),
+> and a legacy 4.9.x kernel — make it extremely difficult to run Android 15
+> smoothly. Google's own minimum specs call for 4GB RAM and kernel 5.4+,
+> and every patch or fix on this old vendor/HAL tends to introduce new breakage.
+>
+> It was an awesome 3-day adventure building and debugging this ROM, but the
+> performance results don't justify the effort — the hardware simply can't
+> keep up with modern Android at this level.
+>
+> **The latest release (V18 Vanilla) is functional and can be flashed,
+> but no further development is planned.**
+
 Unofficial ProjectMatrixx v11.9.0 for santoni.
-Optimized for 2GB RAM, SELinux enforcing, Vanilla only.
+Optimized for low-RAM devices (2–4GB), SELinux enforcing, Vanilla only.
 
 > **Vanilla only** — no bundled Google Services or microG.
 > Use external GApps (NikGapps Core recommended) after flashing.
@@ -13,7 +28,7 @@ Optimized for 2GB RAM, SELinux enforcing, Vanilla only.
 | SoC | Qualcomm MSM8937 (Snapdragon 430) |
 | CPU | 4× A53 @1.4GHz + 4× A53 @1.2GHz |
 | GPU | Adreno 505 |
-| RAM | 2GB / 3GB |
+| RAM | 2GB / 3GB (also works on 4GB variants) |
 | Kernel | 4.9.257 Luuvy-Checkmate-B.4.0 (prebuilt) |
 
 ## Repositories
@@ -80,7 +95,7 @@ mka bacon
 
 - **Spectrum Kernel Manager** — 4 CPU/GPU/RAM profiles via QS tile
 - **28-app debloat** — ~350MB freed via Android.bp overrides
-- **2GB RAM tuning** — aggressive LMK, reduced heap, zRAM, background limits
+- **Low-RAM tuning** — aggressive LMK, reduced heap, zRAM, background limits
 - **SELinux Enforcing** — targeted vendor policies, no permissive
 
 ### Spectrum Profiles
@@ -111,7 +126,7 @@ mka bacon
 
 | Doc | Description |
 |-----|-------------|
-| [CHANGELOG.md](CHANGELOG.md) | Full development history (V3-V16+) |
+| [CHANGELOG.md](CHANGELOG.md) | Full development history (V3-V18) |
 | [dontauditlist.txt](dontauditlist.txt) | SELinux dontaudit rule registry |
 | [docs/bug-analysis/](docs/bug-analysis/) | Detailed root cause analysis |
 | [docs/screenshot/](docs/screenshot/) | Device screenshots |
@@ -137,6 +152,10 @@ mka bacon
 | ![Spectrum](docs/screenshot/spectrum%20profiles%20on%20statusbar%20qs.png) | Spectrum profiles on QS tile |
 | ![RAM Usage](docs/screenshot/rom%20+%20nikgapps%20usage%20ram.png) | ROM + NikGapps RAM usage |
 | ![Keybox](docs/screenshot/keybox.png) | Keybox attestation |
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## Credits
 
