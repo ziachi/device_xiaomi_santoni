@@ -114,6 +114,15 @@ If your fingerprint or keybox gets flagged/failed, you can easily replace
 them through the Matrixx Override settings — no additional modules or
 Magisk/KSU tweaks needed.
 
+**Key Attestation:**
+
+<p align="center">
+  <img src="screenshots/key_attestation.png" alt="Key Attestation — Google hardware attestation root certificate, Bootloader locked" width="300"/>
+</p>
+
+Google hardware attestation root certificate is valid, and the bootloader
+appears as locked. This means Play Integrity strong/device level passes.
+
 **Other Matrixx Override features:**
 - Hide app list from detection
 - Device spoofing (model, fingerprint, keybox)
