@@ -89,26 +89,3 @@ could remotely re-enable it. V18 logcat still showed 113 binder errors.
 4. `CachedAppOptimizer.mUseFreezer` → hardcoded false
 
 This ensures freezer is 100% dead regardless of any runtime config changes.
-
-## V20 — Maximum Freezer Kill (3-Layer)
-
-### Root Cause (V19 Residual)
-V17-V19 patches blocked Java-level freeze paths (Freezer.java + CachedAppOptimizer.java),
-but two native paths still caused errors:
-1. `Process.setProcessFrozen()` — native JNI method callable by ANY code path
-2. LMKD daemon — has its own cgroup freeze integration independent of Java
-
-V19 logcat still showed 222 binder freeze errors + 158 cgroup.freeze errors.
-
-### Fix — 3 Layers
-| Layer | File | Change |
-|-------|------|--------|
-| 1 | `Process.java` | Replace `native setProcessFrozen()` with Java no-op |
-| 2 | `system.prop` | `ro.lmk.use_cgroup_freezer=false` |
-| 3 | Existing V17 patches | `Freezer.java` + `CachedAppOptimizer.java` (safety net) |
-
-### DEXopt Fix
-| Prop | Before (V19) | After (V20) | Why |
-|------|-------------|-------------|-----|
-| `pm.dexopt.install` | `speed` | `speed-profile` | Play Store frozen 2.5min during self-update |
-| `pm.dexopt.first-boot` | `speed-profile` | `verify` | First boot was slower |
