@@ -97,6 +97,17 @@ mka bacon
 - **28-app debloat** — ~350MB freed via Android.bp overrides
 - **Low-RAM tuning** — aggressive LMK, reduced heap, zRAM, background limits
 - **SELinux Enforcing** — targeted vendor policies, no permissive
+- **Play Integrity** — passed by default, with built-in spoofing via Matrixx Override
+
+### Play Integrity
+
+Play Integrity passes out of the box. The ROM includes a built-in feature
+called **Matrixx Override** (found in Settings → Miscellaneous) that handles
+device spoofing automatically.
+
+If your fingerprint or keybox gets flagged/failed, you can easily replace
+them through the Matrixx Override settings — no additional modules or
+Magisk/KSU tweaks needed.
 
 ### Spectrum Profiles
 
