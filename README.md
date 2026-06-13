@@ -114,6 +114,7 @@ mka bacon
 | [CHANGELOG.md](CHANGELOG.md) | Full development history (V3-V16+) |
 | [dontauditlist.txt](dontauditlist.txt) | SELinux dontaudit rule registry |
 | [docs/bug-analysis/](docs/bug-analysis/) | Detailed root cause analysis |
+| [docs/screenshot/](docs/screenshot/) | Device screenshots |
 
 ### Bug Analysis
 
@@ -125,6 +126,17 @@ mka bacon
 | [spectrum.md](docs/bug-analysis/spectrum.md) | Kernel profile switcher + property mapping |
 | [debloat.md](docs/bug-analysis/debloat.md) | Debloat strategy - what worked, what didn't |
 | [luuvy-kernel.md](docs/bug-analysis/luuvy-kernel.md) | Prebuilt kernel integration |
+
+### Screenshots
+
+| Screenshot | Description |
+|------------|-------------|
+| ![About Phone](docs/screenshot/about%20phone.png) | Device info |
+| ![Passed Integrity](docs/screenshot/passed%20integrity%20+%202gb%20zram.png) | Play Integrity passed + 2GB ZRAM |
+| ![KSU](docs/screenshot/ksu%20enable%20by%20default.png) | KernelSU enabled by default |
+| ![Spectrum](docs/screenshot/spectrum%20profiles%20on%20statusbar%20qs.png) | Spectrum profiles on QS tile |
+| ![RAM Usage](docs/screenshot/rom%20+%20nikgapps%20usage%20ram.png) | ROM + NikGapps RAM usage |
+| ![Keybox](docs/screenshot/keybox.png) | Keybox attestation |
 
 ## Credits
 
