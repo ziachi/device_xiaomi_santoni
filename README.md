@@ -1,16 +1,19 @@
 # Matrixx 15 (Android 15) — Xiaomi Redmi 4X (santoni)
 
-> ⚠️ **Project Status: Likely Discontinued**
+> ✅ **The ROM is ready for daily use** — you can flash and use it right now.
 >
-> This project may no longer be actively maintained.
+> ⚠️ **Project Status: Likely Discontinued (Developer's Note)**
+>
+> From a developer's perspective, the result is not satisfying.
 > The Redmi 4X's hardware limitations — 2/3GB RAM, Snapdragon 430 (MSM8937),
 > and a legacy 4.9.x kernel — make it extremely difficult to run Android 15
-> smoothly. Google's own minimum specs call for 4GB RAM and kernel 5.4+,
-> and every patch or fix on this old vendor/HAL tends to introduce new breakage.
+> at the quality standard I want. Google's own minimum specs call for
+> 4GB RAM and kernel 5.4+, and every patch or fix on this old vendor/HAL
+> tends to introduce new breakage.
 >
-> It was an awesome 3-day adventure building and debugging this ROM, but the
-> performance results don't justify the effort — the hardware simply can't
-> keep up with modern Android at this level.
+> It was an awesome 3-day adventure building and debugging this ROM, but
+> the performance doesn't match the effort I put in — the hardware simply
+> can't keep up with modern Android at this level.
 >
 > **The latest release (V18 Vanilla) is functional and can be flashed,
 > but no further development is planned.**
