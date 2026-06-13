@@ -12,11 +12,12 @@ on post-fs
     exec u:r:init:s0 -- /system/bin/swapon /dev/block/zram0
 
 on property:sys.boot_completed=1
-    # Base VM tuning
-    write /proc/sys/vm/swappiness 80
+    # Base VM tuning — V18 CPU thrashing mitigation
+    write /proc/sys/vm/swappiness 100
     write /proc/sys/vm/dirty_ratio 20
     write /proc/sys/vm/dirty_background_ratio 5
-    write /proc/sys/vm/vfs_cache_pressure 100
+    write /proc/sys/vm/vfs_cache_pressure 50
+    write /proc/sys/vm/watermark_boost_factor 0
     write /proc/sys/vm/extra_free_kbytes 24300
 
     # Default I/O scheduler

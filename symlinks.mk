@@ -76,3 +76,7 @@ PRODUCT_PACKAGES += \
     firmware_WCNSS_qcom_wlan_nv.bin_symlink \
     firmware_WCNSS_wlan_dictionary.dat_symlink \
     firmware_wlan_mac.bin_symlink
+
+# V18: Fingerprint HAL compat symlink
+PRODUCT_PACKAGES += \
+    libstdc++_vendor_compat_symlink

@@ -33,3 +33,6 @@ allow vendor_init blkio:file w_file_perms;
 # V14: Allow Spectrum profile switching to tune memory
 allow vendor_init proc_extra_free_kbytes:file { open write };
 allow vendor_init proc_drop_caches:file { open write };
+
+# V18: Allow VM tuning for CPU thrashing mitigation
+allow vendor_init proc_watermark_boost_factor:file { open write };

@@ -35,6 +35,15 @@ install_symlink {
     symlink_target: "/mnt/vendor/persist/wlan_mac.bin",
 }
 
+// V18: Fingerprint HAL compat — gx_fpd/libfpservice.so needs libstdc++.so
+// but Android 15 VNDK installs it as libstdc++_vendor.so in vendor partition
+install_symlink {
+    name: "libstdc++_vendor_compat_symlink",
+    vendor: true,
+    installed_location: "lib64/libstdc++.so",
+    symlink_target: "/vendor/lib64/libstdc++_vendor.so",
+}
+
 cc_defaults {
     name: "vendor_init_defaults",
     whole_static_libs: ["libinit_santoni"],
