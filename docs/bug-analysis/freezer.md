@@ -60,3 +60,18 @@ This tells `CachedAppOptimizer` to skip the freezer entirely. Background apps ar
 - **First seen:** V15 (after Luuvy kernel inject)
 - **Fixed:** V16
 - **Kernel:** Luuvy 4.9.257-Checkmate-B.4.0.EOL
+
+
+## V17 — Final Fix: Hardcode Disable
+
+V16 approach ( prop) FAILED because:
+1. Android 15 DeviceConfig migrated from system properties to SettingsProvider DB
+2. GMS Phenotype can remotely push , overriding any default
+3.  returns true on kernel 4.9 (partial cgroup v2 files exist)
+
+### Fix Applied
+-  → hardcoded 
+-  → hardcoded 
+- Removed broken prop from system.prop
+
+This bypasses ALL conditional logic including GMS server-side overrides.

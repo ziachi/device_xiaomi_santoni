@@ -180,3 +180,11 @@
 | #9 | Maintainer overlay (cr_strings.xml) |
 | #10 | DolbyProvider disable |
 | #11 | Spectrum profiles (init.spectrum.rc, init.santoni_perf.rc) |
+
+## V17 — Hardcode Freezer Kill + Fingerprint HAL
+
+| # | Fix | Files |
+|---|-----|-------|
+| 104 | Hardcode disable cached app freezer (bypass GMS Phenotype) | CachedAppOptimizer.java, Freezer.java |
+| 105 | Enable fingerprint HAL (gx_fpd) + cleanup broken freezer prop | biometrics/*.rc, file_contexts, system.prop |
+
