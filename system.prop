@@ -214,10 +214,10 @@ persist.device_config.gms_games.enabled=false
 # Limit max cached processes system-wide
 persist.device_config.activity_manager.max_cached_processes=8
 # Defer dex2oat to idle/charging state to reduce first boot lag
-pm.dexopt.install=speed
+pm.dexopt.install=speed-profile
 pm.dexopt.bg-dexopt=speed-profile
 pm.dexopt.boot-after-ota=verify
-pm.dexopt.first-boot=speed-profile
+pm.dexopt.first-boot=verify
 # Limit GMS background service restarts
 persist.log.tag.gs.intelligence=S
 persist.log.tag.AccessPersistence=S
