@@ -126,6 +126,11 @@ To use ADB without a screen (headless/screenless access), you need to
 inject your ADB public key into the device yourself (e.g. via automation
 or recovery). The ROM does not pre-inject any ADB keys.
 
+> ⚠️ **Security note:** Some apps (e.g. banking, e-wallet, certain games)
+> may refuse to run or show security warnings when USB Debugging is enabled.
+> If you encounter this, disable it manually via Settings → Developer Options
+> → USB Debugging.
+
 ### KernelSU
 
 KernelSU (KSU) is prebuilt into the Luuvy kernel — root access is available
