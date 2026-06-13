@@ -181,6 +181,18 @@
 | #10 | DolbyProvider disable |
 | #11 | Spectrum profiles (init.spectrum.rc, init.santoni_perf.rc) |
 
+
+## V18 — Fingerprint HAL Fix + GameSpace Cleanup (2026-06-13)
+
+| # | Fix | File(s) |
+|---|-----|---------|
+| 1 | Fix gx_fpd crash: libstdc++.so symlink for Android 15 VNDK compat | Android.bp, symlinks.mk |
+| 2 | Remove GameSpace Settings entry (debloated app crash fix) | crDroidSettings/crdroid_settings_misc.xml |
+| 3 | VM tuning: swappiness 100, vfs_cache_pressure 50, watermark_boost_factor 0 | init.santoni_perf.rc |
+| 4 | SELinux: allow vendor_init proc_watermark_boost_factor | vendor_init.te |
+
+**Autofix during compile:** 1x XML mismatched tag in crDroidSettings → clean removal
+
 ## V17 — Hardcode Freezer Kill + Fingerprint HAL
 
 | # | Fix | Files |
