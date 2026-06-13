@@ -118,13 +118,13 @@ Magisk/KSU tweaks needed.
 
 ### USB Debugging
 
-USB Debugging (ADB) is *enabled by default* — you can connect and debug
-the device entirely via ADB without needing to touch the screen at all.
-This is useful for headless debugging, flashing, or recovery scenarios.
+USB Debugging (ADB) is *enabled by default* — only the debugging toggle
+is turned on. ADB authorization key security remains fully active, so
+unauthorized computers cannot connect without approval.
 
-> ⚠️ **Security note:** You may want to disable USB Debugging manually
-> after setup (Settings → Developer Options → USB Debugging) if the device
-> will be used daily.
+To use ADB without a screen (headless/screenless access), you need to
+inject your ADB public key into the device yourself (e.g. via automation
+or recovery). The ROM does not pre-inject any ADB keys.
 
 ### KernelSU
 
